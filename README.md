@@ -13,13 +13,14 @@ Shell is an interface that connects you to the operating system (OS) and lets yo
 ### **Terminal**
 Terminal is a graphical software that you can access any shell you want through it.
 ![image](https://user-images.githubusercontent.com/92635013/195100325-217ca755-2767-470c-995d-fbf9fa89c065.png)
-# General Structure of Linux Commands
+## General Structure of Linux Commands
 ```
 COMMAND [OPTIONS] [ARGUMENTS]
 ```
 - **COMMAND:** This part is the command that is sent to the OS. Every command is a program that tells the OS to do something.
 - **OPTIONS:** We can put zero or more options here. They specify the details of our command. Options are denoted by **_"-"_** or **_"--"_** sign.
 - **ARGUMENTS:** These are the inputs that the command is going to operate on.
+
 **be aware:** All of above parts are case sensitive.
 # 1) Basic Commands
 ## echo
