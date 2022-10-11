@@ -120,3 +120,91 @@ Moreover, we are able to clear our history using `history -c` command.
 A **bash script** is a file that we run a set of processes by executing it.
 
 **_Shebang:_** A shebang is a line at the beginning of the script (or every executable file). We use it to tell the OS how to interpret this file. This line consists of **`#!`** followed by the address of desired interpreter. For example, the shebang we should use at the beginnig of a bash script file is `#! /bin/bash`.
+
+## Variables
+
+We can define variables in bash scripts just like other languages. For instance:
+
+```bash
+#! /bin/bash
+name = parsa
+echo hello $name
+```
+
+Output: `hello parsa`
+
+We can access the arguments passed to our script using `$n` which will give us the nth argument if it exists and "" if it doesn't. (If n has more than one digit, we have to use `${n}`) For example:
+
+If our script file `hello.sh` is:
+
+```bash
+#! /bin/bash
+echo $1 says hello to $2
+```
+
+the output will be:
+
+```shell
+$ ./hello.sh parsa mahyar
+parsa says hello to mahyar
+```
+
+There are some special variables in bash scripts:
+|Variable |Value |
+|:--------|:-----|
+|$0|The filename of the current script.|
+|$1-$9|Stores the names of the first 9 arguments or can be used as the arguments’ positions.|
+|$$|The process id of the current shell.|
+|$#|The number of arguments supplied to a script.|
+|$*|Stores all the command line arguments by joining them together.|
+|$@|Stores the list of arguments as an array.|
+|$?|Specifies the exit status of the last command or the most recent execution process.|
+|$!|Shows the id of the last background command.|
+|$-|Shows the options set used in the current bash shell.|
+
+Example:
+
+```bash
+#!/bin/bash
+
+# sample.sh
+
+echo "Process id of shell = $$"
+echo "Name of shell script = $0"
+echo "Number of args = $#"
+echo "Argument 1 = $1"
+echo "Argument 2 = $2"
+```
+
+Output:
+
+```shell
+$ ./sample.sh 1 2 3
+process id of shell = 22342
+Name of shell script = ./sample.sh
+Number of args = 3
+Argument 1 = 1
+Argument 2 = 2
+```
+
+We can also do mathematical operations as well:
+
+```bash
+#!/bin/bash
+
+# gouss law
+for i in {0..10}
+do
+  sum=$((sum+i))
+done
+
+echo sum of first 10 integers are: $sum
+echo sum of first 10 integers are: $(((10+0)*11/2))
+```
+
+We can use the output of a command in another command. For instance:
+
+```shell
+$ ./hello.sh $(whoami) mahyar
+parsa says hello to mahyar
+```
