@@ -128,7 +128,7 @@ We can define variables in bash scripts just like other languages. For instance:
 ```bash
 #! /bin/bash
 name = parsa
-echo hello $name
+echo "hello $name"
 ```
 
 Output: `hello parsa`
@@ -139,7 +139,7 @@ If our script file `hello.sh` is:
 
 ```bash
 #! /bin/bash
-echo $1 says hello to $2
+echo "$1 says hello to $2"
 ```
 
 the output will be:
@@ -198,8 +198,8 @@ do
   sum=$((sum+i))
 done
 
-echo sum of first 10 integers are: $sum
-echo sum of first 10 integers are: $(((10+0)*11/2))
+echo "sum of first 10 integers are: $sum"
+echo "sum of first 10 integers are: $(((10+0)*11/2))"
 ```
 
 We can use the output of a command in another command. For instance:
