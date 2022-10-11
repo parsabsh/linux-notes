@@ -22,6 +22,23 @@ COMMAND [OPTIONS] [ARGUMENTS]
 - **ARGUMENTS:** These are the inputs that the command is going to operate on.
 
 **be aware:** All of above parts are case sensitive.
+## Some Useful Ubuntu Shortcuts
+_**Note**_: Super key is the key with windows sign on it (= Windows key).
+|Key|Action|
+|:--|:-----|
+|Super key|Opens Activities search|
+|Ctrl + Alt + T|Ubuntu terminal shortcut|
+|Super + L or Ctrl + Alt + L|Locks the screen|
+|uper + D or Ctrl + Alt + D|Show desktop|
+|Super + A|Shows the application menu|
+|Super + Tab or Alt + Tab|Switch between running applications|
+|Super + Arrow keys|Snap windows|
+|Super + M|Toggle notification tray|
+|Super + Space|Change input keyboard (for multilingual setup)|
+|Alt + F2|Run console|
+|Ctrl + Q|Close an application window|
+|Ctrl + Alt + arrow|Move between workspaces|
+|Ctrl + Alt + Del|Log out|
 # 1) Basic Commands
 ## echo
 ```
