@@ -43,7 +43,7 @@ _**Note**_: Super key is the key with windows sign on it (= Windows key).
 |Super key|Opens Activities search|
 |Ctrl + Alt + T|Ubuntu terminal shortcut|
 |Super + L or Ctrl + Alt + L|Locks the screen|
-|uper + D or Ctrl + Alt + D|Show desktop|
+|Super + D or Ctrl + Alt + D|Show desktop|
 |Super + A|Shows the application menu|
 |Super + Tab or Alt + Tab|Switch between running applications|
 |Super + Arrow keys|Snap windows|
