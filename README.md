@@ -16,13 +16,20 @@ Terminal is a graphical software that you can access any shell you want through 
 
 # 1) Basic Commands
 ## echo
-The simplest command in linux is `echo` which simply prints out every parameter that is passed to it. Try typing `echo hello linux` in your terminal!
+```
+echo <argument>
+```
+The simplest command in linux is `echo` which simply prints out every argument that is passed to it. Try typing `echo hello linux!` in your terminal!
 ## pwd
+```
+pwd
+```
 In linux, a **directory** is something that contains some other files and directories. When you open the _terminal_, you are in `/home/<username>` by default (where `<username>` is your account name). <br>
-By entering `pwd` in your terminal (which stands for `print workspace directory`), you can see where you are in the file system.
+By entering `pwd` in your terminal (which stands for `print work directory`), you can see where you are in the file system.
 ## cd
-`cd` stands for `change directory` and as its name implies, we can use it to move in the file system.
 ```
 cd <address>
 ```
-**hint:** `<address>` can be either relative or absolute.
+`cd` stands for `change directory` and as its name implies, we can use it to move in the file system.
+(`<address>` can be either relative or absolute) <br><br>
+**~** : This sign stands for the current user's home directory which is `/home/<username>`. For example `cd ~/Downloads/` will move me to `/home/parsa/Downloads/`.
