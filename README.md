@@ -76,3 +76,8 @@ history [<number of commands>]
 If we enter `history` in terminal, we can see the complete history of our entered commands. We can also restrict the number of commands to see. For instance, by entering `history 3`, we can see our last 3 commands. <br>
 Moreover, we are able to clear our history using `history -c` command.
 ## mkdir
+# 4) Scripting
+A **bash script** is a file that we run a set of processes by executing it.
+
+
+**_Shebang:_** A shebang is a line at the beginning of the script (or every executable file). We use it to tell the OS how to interpret this file. This line consists of **`#!`** followed by the address of desired interpreter. For example, the shebang we should use at the beginnig of a bash script file is `#! /bin/bash`.
