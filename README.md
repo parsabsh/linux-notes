@@ -127,7 +127,7 @@ We can define variables in bash scripts just like other languages. For instance:
 
 ```bash
 #! /bin/bash
-name = parsa
+name=parsa
 echo "hello $name"
 ```
 
@@ -216,7 +216,7 @@ We can define arrays in two ways:
 1) Evaluate inline:
   
    ```bash
-   my_array = (1 "parsa" 56 'h')
+   my_array=(1 "parsa" 56 'h')
    ```
   
    **hint:** variables in an array should not be the same type.
