@@ -187,21 +187,6 @@ Argument 1 = 1
 Argument 2 = 2
 ```
 
-We can also do mathematical operations as well:
-
-```bash
-#!/bin/bash
-
-# gouss law
-for i in {0..10}
-do
-  sum=$((sum+i))
-done
-
-echo "sum of first 10 integers are: $sum"
-echo "sum of first 10 integers are: $(((10+0)*11/2))"
-```
-
 We can use the output of a command in another command. For instance:
 
 ```shell
