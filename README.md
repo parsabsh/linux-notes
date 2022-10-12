@@ -208,3 +208,101 @@ We can use the output of a command in another command. For instance:
 $ ./hello.sh $(whoami) mahyar
 parsa says hello to mahyar
 ```
+
+## Arrays
+
+We can define arrays in two ways:
+
+1) Evaluate inline:
+  
+   ```bash
+   my_array = (1 "parsa" 56 'h')
+   ```
+  
+   **hint:** variables in an array should not be the same type.
+
+2) Create an empty array:
+  
+   ```bash
+   declare -a my_array
+   ```
+
+### Append
+
+We can append one or more elements to an array like this:
+
+```bash
+my_array += (23)
+my_array += ("ali" "sara" 174)
+```
+
+### Access Elements
+
+We can access all elements in our array like this:
+
+```bash
+echo ${my_array[@]}   # print the whole array
+echo ${my_array[*]}   # print the whole array
+```
+
+We can also access the element in a specific index like this:
+
+```bash
+echo ${my_array[0]}   # arrays start at 0
+echo ${my_array[1]}
+echo ${my_array[-1]}  # you can use negetive index to index from the end
+
+my_array[0]=hello     # you can change an index value
+my_array[10]='new'    # accessing an "out of range" index would result in an append!
+```
+
+Moreover, to access the length of an array use `#`. For example:
+
+```bash
+echo "the array contains ${#my_array[@]} elements"
+```
+
+To access the indices of our array use `!`. Like this:
+
+```bash
+echo "${!my_array[@]}"
+```
+
+Also, we can use `unset` command to remove an index from our array:
+
+```bash
+a1=(1 2 3 4 5 6 7)
+unset a1[1]
+unset a1[3]
+echo ${!a1[@]}          # index 1 and 3 are removed
+echo ${#a1[@]}          # arrays size is decreased by 2
+echo ${a1[@]}           # the values of those indices are lost too
+```
+
+and the output will be:
+
+```shell
+$ ./hello.sh
+0 2 4 5 6
+5
+1 3 5 6 7
+```
+
+## Hashmaps
+
+Hashmaps are just like arrays and we can use the scripts that we have written for arrays, for hashmaps too.
+
+The only difference between arrays and hashmaps is the way they're defined:
+
+```bash
+declare -A fruits
+
+fruits=([pineapple]=10 [banana]=3 [apple]=2)
+fruits+=([potato]=1 [mango]=12 [apple]=3)
+
+echo ${!fruits[@]}          # keys
+echo ${fruits[@]}           # values
+# notice that "umadam" key appears once even though we defined it twice
+# notice that the index orders are different from how we inserted them
+echo ${#fruits[@]}
+```
