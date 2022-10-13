@@ -287,7 +287,7 @@ fruits+=([potato]=1 [mango]=12 [apple]=3)
 
 echo ${!fruits[@]}          # keys
 echo ${fruits[@]}           # values
-# notice that "umadam" key appears once even though we defined it twice
+# notice that "apple" key appears once even though we defined it twice
 # notice that the index orders are different from how we inserted them
 echo ${#fruits[@]}
 ```
