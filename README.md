@@ -481,6 +481,8 @@ done
    done
    ```
 
+   We can use `{1..10}` as a list to make the same loop as the above example.
+
 ### While Loops
 
 Using a `while loop` we can repeat executing some commands as far as a condition is true. This is the general structure:
@@ -505,3 +507,103 @@ done
 ```
 
 **Note:** We can use `break` and `continue` statements just like every other language.
+
+## Options and Arguments
+
+In this rather short section, we want to work with any number of arguments and options.
+
+First you should get to know the `shift` command. As its name implies, it _shifts_ the arguments to the left by 1. This means that the first argument (`$1`) will be removed (and will be replaced by the second one (`$2`)).
+
+Now we can combine `while loop` and `shift` command to work with an arbitrary number of arguments. See this example:
+
+```bash
+#!/bin/bash
+count=1
+while [ -n "\$1" ]  # continues until there is no arguments
+do
+   echo "Parameter #\$count = \$1"
+   ((count++))
+   shift
+done
+```
+
+Now we can work with options by combining `while loop`, `switch-case statement`, and `shift operator`. Consider the following example:
+
+```bash
+#! /bin/bash
+OPTION1=false # Boolean Option with default value
+OPTION2=hello # Parameter Option with default value
+
+while [ -n "\$1" ]
+do
+   case "\$1" in
+      -o1) echo "OPTION1 entered"
+         OPTION1=true
+         shift ;;
+
+      -o2 | --option2) echo "OPTION2 entered"
+         if [ -z \$2 ]; then
+            echo "Option2 needs a parameter"
+            exit 1
+         fi
+         OPTION2=\$2
+         shift
+         shift ;;
+
+      --) shift
+         break ;;
+
+      *) echo "\$1 is not an Option"
+         exit 1 ;;
+   esac
+done
+
+echo "Option1: \$OPTION1, Option2: \$OPTION2"
+count=1
+while [ -n "\$1" ]
+do
+   echo "Parameter \$count = \$1"
+   count=\$[ \$count + 1 ]
+   shift
+done
+```
+
+And the output will be:
+
+```shell
+$ bash options.sh -o1 --option2 bye -- Parsa Reza Amir
+OPTION1 entered
+OPTION2 entered
+Option1: true, Option2: bye
+Parameter 1 = Parsa
+Parameter 2 = Reza
+Parameter 3 = Amir
+```
+
+<details>
+<summary><b>Another Example: How's the weather?</b></summary>
+
+In this example we write a script to get the weather of a region that is passed to script as an argument. We also write a `--help` option for it :)
+
+```bash
+#! /bin/bash
+
+case $1 in
+   -h | --help)
+      echo "Short Option   Long Option    Description"
+      echo "-h             --help         Show help"
+      echo "-l             --location     Show weather"
+   -l | --location)
+      curl https://wttr.in/$2
+      ;;
+   *)
+      curl https://wttr.in
+      ;;
+esac
+```
+
+Now execute the script and see the magic :)))
+
+</details>
+
+## Functions
