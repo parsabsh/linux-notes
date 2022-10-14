@@ -5,8 +5,8 @@
   - [Linux Distributions ("Distro"s)](#linux-distributions-distros)
     - [The most popular linux distributions](#the-most-popular-linux-distributions)
   - [What are "shell" and "terminal" ?](#what-are-shell-and-terminal-)
-    - [**Shell**](#shell)
-    - [**Terminal**](#terminal)
+    - [Shell](#shell)
+    - [Terminal](#terminal)
   - [General Structure of Linux Commands](#general-structure-of-linux-commands)
   - [Some Useful Ubuntu Shortcuts](#some-useful-ubuntu-shortcuts)
 - [1) Basic Commands](#1-basic-commands)
@@ -55,11 +55,11 @@ You can find a complete tree of linux distros [here](https://upload.wikimedia.or
 
 ## What are "shell" and "terminal" ?
 
-### **Shell**
+### Shell
 
 Shell is an interface that connects you to the operating system (OS) and lets you work with it. Shell is responsible for interpreting commands and return the results back. The default shell in ubuntu (and many other distros) is _**bash**_.
 
-### **Terminal**
+### Terminal
 
 Terminal is a graphical software that you can access any shell you want through it.
 ![image](https://user-images.githubusercontent.com/92635013/195100325-217ca755-2767-470c-995d-fbf9fa89c065.png)
