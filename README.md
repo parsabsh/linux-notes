@@ -606,4 +606,61 @@ Now execute the script and see the magic :)))
 
 </details>
 
-## Functions
+## Other Topics
+
+### Functions
+
+We can define functions in bash, but they're a little bit different from other languages in passing arguments and using them. See the following example:
+
+```bash
+#!/bin/bash
+function hello_world {
+  echo hello world!
+}
+
+function greet {
+  echo "hello $1"  # This is how we use the arguments that have been passed to the function in bash
+}
+
+greet mirza  # This is how we pass an argument to a function in bash
+greet hovakhshatara some additional arguments  # They have no effect
+hello_world these are additional arguments
+```
+
+### Mathematical Operations
+
+When we want to write a mathematical expression, we should wrap it in `$((here))`. Example:
+
+```bash
+#!/bin/bash
+
+# gouss law
+for i in {0..10}
+do
+  sum=$((sum+i))
+done
+
+echo sum of first 10 integers are: $sum
+echo sum of first 10 integers are: $(((10+0)*11/2))
+```
+
+### Command Substitution
+
+We can use the output of a function/command as a variable by wrapping it in ` `` `. For instance:
+
+```bash
+#!/bin/bash
+
+# gouss law
+function gauss {
+  for i in {0..10}
+    do
+      sum=$((sum+i))
+  done
+  echo $sum
+}
+
+echo here is the proof that guass law was currect: `gauss` == $(((10+0)*11/2))
+```
+
+# 5) Processes
