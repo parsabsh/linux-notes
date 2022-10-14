@@ -35,6 +35,18 @@ COMMAND [OPTIONS] [ARGUMENTS]
 
 **Be aware:** All of above parts are case sensitive.
 
+**Help:** You can get information about a command, using one of the following commands:
+
+```bash
+COMMAND --help
+```
+
+or
+
+```bash
+man COMMAND
+```
+
 ## Some Useful Ubuntu Shortcuts
 
 _**Note**_: Super key is the key with windows sign on it (= Windows key).
@@ -165,7 +177,7 @@ There are some special variables in bash scripts:
 Example:
 
 ```bash
-#!/bin/bash
+#! /bin/bash
 
 # sample.sh
 
@@ -291,3 +303,120 @@ echo ${fruits[@]}           # values
 # notice that the index orders are different from how we inserted them
 echo ${#fruits[@]}
 ```
+
+## Conditional Statements
+
+### if-then
+
+The simplest conditional statement in bash is `if-then` statement:
+
+```bash
+if command
+then
+   commands
+fi
+```
+
+or in this format:
+
+```bash
+if command; then
+   commands
+fi
+```
+
+**Note:** There is a subtle difference between if statements in bash and other languages. In other languages, the conditional term is either True of False. But in bash, it's a command. If the command is executed successfully (with exit code `0`), then the `commands` will be executed (and otherwise, they won't).
+
+### if-then-else
+
+Another conditional structure in bash is `if-then-else` statements:
+
+```bash
+if command
+then
+   commands
+else
+   commands
+fi
+```
+
+or in this format:
+
+```bash
+if command; then
+   commands
+else
+   commands
+fi
+```
+
+### if-elif-else
+
+The `if-elif-else` statements are in the following format:
+
+```bash
+if command-1; then
+   commands-1
+elif command-2; then
+   commands-2
+...
+elif command-n; then
+   commands-n
+else (optional)
+   commands-else
+fi
+```
+
+Note that the `else` part is optional.
+
+### switch-case
+
+Another useful conditional statement in bash is `switch-case` structure:
+
+```bash
+case EXPRESSION in
+
+   PATTERN_1)
+      STATEMENTS
+      ;;
+
+   PATTERN_2)
+      STATEMENTS
+      ;;
+
+   PATTERN_N)
+      STATEMENTS
+      ;;
+
+   *)
+      STATEMENTS
+      ;;
+esac
+```
+
+### test command
+
+Earlier we talked about the difference between bash and other languages in conditional term.
+
+Now if we want to use the `True/False` structure for `if-statements`, linux has provided us with a useful tool which returns `exit code 0` if `True`, and `exit code 1` if `False`. This tool is the `test` command.
+
+```bash
+test conditions
+```
+
+or
+
+```bash
+[ conditions ]
+```
+
+Using the `test` command, you can have `Numeric Comparisons`, `String Comparisons`, and `File Comparisons`. There are a lot of options built into the `test` command, that I strongly suggest you to use the following command for more information:
+
+```shell
+$ man test
+```
+
+**ٔNote:** You can also use AND(`&&`) and OR(`||`) operations to combine conditions in `test` command.
+
+## Loops
+
