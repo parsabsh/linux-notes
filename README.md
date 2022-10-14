@@ -420,3 +420,88 @@ $ man test
 
 ## Loops
 
+Using loops, we can repeat a piece of script.
+
+### For Loops
+
+The first loop structure is `for loop`. we can use it like this:
+
+```bash
+for variable in list
+do
+    commands
+done
+```
+
+`list` is something that contains some elements. There are different ways to determine a list in a for loop:
+
+- manually:
+  
+   ```bash
+   #! /bin/bash
+   for word in "linux" "is" "perfect" "and" "windows?" "mmm," "not" "bad."
+   do
+      echo -n "\$word "
+   done
+   echo
+   ```
+
+   **Note:** The `"` character is optional unless the elements have special characters like `'`, `space`, etc.
+- read from a file:
+
+   ```bash
+   #! /bin/bash
+   for word in \$(cat list.txt)
+   do
+      echo \$word
+   done
+   ```
+
+- read from a folder:
+
+   ```bash
+   #! /bin/bash
+   for word in $(pwd)/folder/*
+   do
+      if [ -d \$word ]; then
+         echo "\$word is a folder"
+      elif [ -f \$word ]; then
+         echo "\$word is a file"
+      fi
+   done
+   ```
+
+- use a counter variable:
+
+   ```bash
+   #! /bin/bash
+   for (( i = 1; i <= 10; i++ ))
+   do
+      echo "Round \$i"
+   done
+   ```
+
+### While Loops
+
+Using a `while loop` we can repeat executing some commands as far as a condition is true. This is the general structure:
+
+```bash
+while command
+do
+    commands
+done
+```
+
+Example:
+
+```bash
+#! /bin/bash
+var=10
+while [ \$var -gt 0 ]
+do
+   echo "Round \$var"
+   ((var--))
+done
+```
+
+**Note:** We can use `break` and `continue` statements just like every other language.
