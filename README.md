@@ -24,6 +24,10 @@
   - [rm](#rm)
   - [date](#date)
   - [Standard Streams](#standard-streams)
+  - [Redirection](#redirection)
+  - [Pipelines](#pipelines)
+- [2) Files and Strings](#2-files-and-strings)
+- [3) Permissions](#3-permissions)
 - [4) Scripting](#4-scripting)
   - [Variables](#variables)
   - [Arrays](#arrays)
@@ -285,7 +289,56 @@ Sun Oct 16 12:13:50 AM +0330 2022
 
 ## Standard Streams
 
+A **stream** is simply a river of data. Linux commands (or more precisely, linux _processes_) talk to each other in terms of streams.
 
+Each linux process has three **standard streams** to communicate with others. It gets and gives data through them. The standard streams are **"Standard Input"**, **"Standard Output"**, and **"Standard Error"**. Each of them has a code which you can see here:
+
+- **stdin:** The command can get its input through stdin (standard input) stream. In raw use of commands, the stdin comes from keyboard as you type in the terminal.
+
+- **stdout:** While the command is running, it sends some outputs that go through the stdin (standard output). In raw use of commands, the stdout stream is shown in the terminal.
+
+- **stderr:** During the execution of a process, it may encounter an error. The program sends errors through the stderr (standard error) steam. In raw use of commands, the stderr stream is shown in the terminal too.
+
+## Redirection
+
+Redirection is a way to use files as stdin and stdout instead of terminal. Namely, we can either give a file to a command as its standard input or save the standard output of a command in a file.
+
+Here are different types of redirections:
+
+```shell
+$ echo "Put this in file.txt" > file.txt  # overwrite the file
+$ echo "Add this to file.txt" >> file.txt  # append to the file
+$ wc < file.txt  # give the file as input of wc command
+$ cat << MARKER > file.txt  # another way of giving input to a command's stdin 
+some
+data
+here
+MARKER
+```
+
+## Pipelines
+
+Pipelines let us give the output of a command as input of another one. Consider the following picture:
+
+Using pipelines, we can combine multiple commands and make powerful commands to do a lots of things in a single line.
+
+The general structure of piplines is like this:
+
+```bash
+command1 | command2 | ...
+```
+
+As an example, here I introduce a pipline which I often use when I want to find out a specific option of a command:
+
+```bash
+COMMAND --help | grep "what I'm looking for"
+```
+
+Use it and enjoy :)
+
+# 2) Files and Strings
+
+# 3) Permissions
 
 # 4) Scripting
 
