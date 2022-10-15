@@ -14,9 +14,16 @@
   - [pwd](#pwd)
   - [cd](#cd)
   - [ls](#ls)
-    - [important options](#important-options)
   - [history](#history)
   - [mkdir](#mkdir)
+  - [rmdir](#rmdir)
+  - [touch](#touch)
+  - [cat](#cat)
+  - [cp](#cp)
+  - [mv](#mv)
+  - [rm](#rm)
+  - [date](#date)
+  - [Standard Streams](#standard-streams)
 - [4) Scripting](#4-scripting)
   - [Variables](#variables)
   - [Arrays](#arrays)
@@ -136,6 +143,8 @@ cd <address>
 `cd` stands for `change directory` and as its name implies, we can use it to move in the file system.
 (`<address>` can be either relative or absolute)
 
+**Note:** We can use `.` and  `..` in the `<address>` part. `.` is `current directory` and `..` is `parent directory`. For example if we are in `/home/parsa` and we run `cd ..`, we will be moved to `/home`.
+
 **~** : This sign stands for the current user's home directory which is `/home/<username>`. For example `cd ~/Downloads/` will move me to `/home/parsa/Downloads/`.
 
 ## ls
@@ -146,7 +155,7 @@ ls [OPTIONS]... [FILE]...
 
 This command, lists information about the FILEs (We often use this command without any arguments which takes the current directory as argument by default)
 
-### important options
+**_important options_**
 
 |option  |effect  |
 |:-------|:-------|
@@ -167,6 +176,116 @@ If we enter `history` in terminal, we can see the complete history of our entere
 Moreover, we are able to clear our history using `history -c` command.
 
 ## mkdir
+
+```bash
+mkdir [OPTION]... DIRECTORY...
+```
+
+This command creates the `DIRECTORY(ies)`, if they don't already exist.
+
+**An important option:** If we want to make nested directories with normal `mkdir` commands, we should do this:
+
+```bash
+mkdir parent
+cd parent/
+mkdir child
+```
+
+But using `-p` or `--parents` option, we can do it in a single command:
+
+```bash
+mkdir -p parent/child
+```
+
+## rmdir
+
+```bash
+rmdir [OPTIONS]... [DIRECTORY]...
+```
+
+This command removes `DIRECTORY(ies)` if they're empty. We have the `-p` option just like the one we had in `mkdir` command.
+
+To remove a non-empty directory, we should use `rm` command which we will learn about later.
+
+## touch
+
+```bash
+touch file_name
+```
+
+This command creates a new file, if it doesn't already exist. Otherwise, it will update the modification time of the existing file to the current time.
+
+## cat
+
+```bash
+cat [OPTION]... file_name
+```
+
+We can see contents of a file using `cat` command. This command has some useful options like `-n` for printing line numbers, `-b` for ignoring blank lines, and so on. Use `cat --help` for more information.
+
+<details>
+<summary><b>Use of cat in redirections</b></summary>
+
+If `cat` command is used without any arguments, it will copy stdin into stdout. This attribute is useful in redirection (which we will learn about in a minute).
+
+For example we can use the following command to simply write in a file:
+
+```bash
+cat > file_name
+```
+
+Try it :)
+
+</details>
+
+## cp
+
+```bash
+cp SOURCE DEST
+```
+
+We use `cp` simply to copy a file or directory. For directories, we should use `-r` option to copy recursively.
+
+## mv
+
+```bash
+mv SOURCE DEST
+```
+
+This command moves a file or directory (You can think about it like _cut_ and _paste_). As always, don't forget to use `--help` or `man` for more information :)
+
+**Note:** We also use `mv` command to **rename** files.
+
+## rm
+
+```bash
+rm [OPTION]... FILE...
+```
+
+We use `rm` to delete a file or directory. Note that to delete a non-empty directory, we use `rm -r` to remove recursively.
+
+## date
+
+```bash
+date [OPTION]... [+FORMAT]
+```
+
+This command is a powerful tool to see the time in any desired format.
+
+To output the current time in a specific format, we use `date '+FORMAT'` where `FORMAT` can be made using the following characters (This is from `date --help`):
+
+To see a specific time we can use `--date` option. See the following example:
+
+```shell
+$ date --date="2 year ago"
+Fri Oct 16 12:13:24 AM +0330 2020
+$ date --date="34 sec ago"
+Sun Oct 16 12:13:50 AM +0330 2022
+```
+
+## Standard Streams
+
+
 
 # 4) Scripting
 
