@@ -344,7 +344,7 @@ A **stream** is simply a river of data. Linux commands (or more precisely, linux
 
 Each linux process has three **standard streams** to communicate with others. It gets and gives data through them. The standard streams are **"Standard Input"**, **"Standard Output"**, and **"Standard Error"**. Each of them has a code which you can see here:
 
-![Uploading stream.png…]()
+![stream](https://user-images.githubusercontent.com/92635013/196439211-22a117f1-61a5-4a2f-805b-8560f5c0f4b9.png)
 
 
 - **stdin:** The command can get its input through stdin (standard input) stream. In raw use of commands, the stdin comes from keyboard as you type in the terminal.
