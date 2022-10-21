@@ -971,7 +971,7 @@ A process can be executed either in _Foreground_ or _Background_. By default, sh
 
 ## Process Management Commands
 
-There are three commands to contorl a process:
+There are some commands to contorl processes:
 
 ### jobs
 
@@ -1017,3 +1017,8 @@ renice -n niceness -u username
 
 ### ps
 
+```bash
+ps [OPTIONS]
+```
+
+This is another command for monitoring the running processes. It has a bunch of useful options that are usualy used together. For example `ps aux` is very common. As always, you can keep learning by yourself using commands' manual pages.
