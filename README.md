@@ -61,7 +61,8 @@
     - [ps](#ps)
   - [Process Lifecycle](#process-lifecycle)
   - [/proc directory](#proc-directory)
-  - [Signals](#signals)
+  - [Signals and kill Command](#signals-and-kill-command)
+  - [Sessions and Groups](#sessions-and-groups)
 
 # Introduction
 
@@ -978,15 +979,27 @@ There are some commands to contorl processes:
 
 ### jobs
 
-Shows background processes.
+This command shows background processes. Each process has a _jobs ID_ that you can use in other commands like `bg`, `fg`, and `kill`.
 
 ### bg
 
-Sends the executing process to background.
+```bash
+bg %n
+```
+
+Where `n` is the _jobs ID_.
+
+This command sends the process to background.
 
 ### fg
 
-Sends the executing process to foreground.
+```bash
+fg %n
+```
+
+Where `n` is the _jobs ID_.
+
+This command sends the process to foreground.
 
 ### top and htop
 
@@ -1038,4 +1051,48 @@ Since **_"Everything is a file"_** in Linux, processes are not exception. All pr
 
 If you open and work with this directory, you will learn a lot about processes. You can also use `man 5 proc` command to enter the manual page of process file system in Linux.
 
-## Signals
+## Signals and kill Command
+
+We use a signal to talk to a process. Not only us, but a signal can be sent by another process or by the OS kernel itself.
+
+When a process recieves a signal, it decides how to react:
+
+1) Do the signal's default operation.
+2) Ignore the signal.
+3) Do something else depending on the situation.
+
+If you want to see the list of signals, type `kill -l` in your terminal. Here we introduce the most important signals:
+
+|Signal|Shortcut|Operation|
+|:-----|:-------|:--------|
+|SIGINT|Ctrl + c|terminate the process|
+|SIGKILL| - |kill the process (can't be ignored)|
+|SIGSTOP|Ctrl + z|stop the process|
+|SIGCONT| - |continue running the stopped process|
+
+We can send signals to a process using the `kill` command in the following structure:
+
+```bash
+kill -NAME PID
+or
+kill -NUMBER PID
+```
+
+Where the `NAME` and `NUMBER` are the ones you saw in `kill -l` command.
+
+## Sessions and Groups
+
+**Group:** A set of related processes that we can send a signal to all of them at once. Each group is identified by `PGID`.
+
+**Group Leader:** The process that has the same PID as the PGID (PID == PGID).
+
+**Session:** Each tab in your terminal is a session. In fact, the `jobs` command displays the processes of the session in which the `jobs` command is executed. Each session is identified by `SID`.
+
+**Session Leader:** The process that has the same PID as the SID (PID == SID). When you use `fg` command, you make a process (and the corresponding group), the session leader.
+
+This image summarizes the definitions above:
+
+![Groups and Sessions](https://quera.org/qbox/view/fWwTcXjVza/session.png)
+
+**Note:** You can send a signal to a group or session just like a single process.
+
