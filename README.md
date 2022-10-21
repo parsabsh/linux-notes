@@ -49,6 +49,16 @@
     - [Mathematical Operations](#mathematical-operations)
     - [Command Substitution](#command-substitution)
 - [5) Processes](#5-processes)
+  - [What is a "Kernel"?](#what-is-a-kernel)
+  - [uname command](#uname-command)
+  - [What is a "process"?](#what-is-a-process)
+  - [Process Management Commands](#process-management-commands)
+    - [jobs](#jobs)
+    - [bg](#bg)
+    - [fg](#fg)
+    - [top and htop](#top-and-htop)
+    - [nice and renice](#nice-and-renice)
+    - [ps](#ps)
 
 # Introduction
 
@@ -934,3 +944,76 @@ echo here is the proof that guass law was currect: `gauss` == $(((10+0)*11/2))
 ```
 
 # 5) Processes
+
+## What is a "Kernel"?
+
+Kernel is the main part of a Operating System that has the full control over everything. It's also an interface between application software and the hardware.
+
+![Kernel](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Kernel_Layout.svg/220px-Kernel_Layout.svg.png)
+
+As always, Google it :)
+
+The **Linux Kernel** is the thing that all Linux distros have in common. It's being managed by _**Linus Torvalds**_ in [**this repository**](https://github.com/torvalds/linux).
+
+## uname command
+
+```bash
+uname [OPTION]...
+```
+
+This command prints certain system information. If used without options, just prints your kernel name. Options are not worth discussing here. Try `uname --help` for more information.
+
+## What is a "process"?
+
+Generally, a process is referred to execution of a program or command. In other words, when we execute a program or command, Linux creates (at least) one process for it. Each process uses an amount of system resources (like CPU, memory, etc.). In linux, each process is identified by a **PID(Process Identification Number)**.
+
+A process can be executed either in _Foreground_ or _Background_. By default, shell commands are executed in _Foreground_ (and so you have to wait until the execution terminates to be able to run another foreground pocess).
+
+## Process Management Commands
+
+There are three commands to contorl a process:
+
+### jobs
+
+Shows background processes.
+
+### bg
+
+Sends the executing process to background.
+
+### fg
+
+Sends the executing process to foreground.
+
+### top and htop
+
+`top` command is Linux's default command to see list of processes. By executing this command, you can observe executing processes and their associated system resources. This list is sorted by CPU usage by default.
+
+For more user-friendly appearance, you can use `htop` command. This command is not installed by default on most Linux distributions and you have to use `sudo apt install htop` first. This command has an interactive environment which you can use Function Keys on your keyboard to do some changes. Try it :)
+
+### nice and renice
+
+If you use `top` or `htop` command, you will see a column named **NI** which stands for **Niceness**. Niceness is the priority of a process. The Linux kernel looks at the priority number to decide which process should run first.
+
+**Niceness** is a number from -20 to 19. The higher the number, the lower the priority. To execute a command or script with a specific niceness, use `nice` command:
+
+```bash
+nice -n niceness COMMAND
+```
+
+**Note:** Only root user can set the nice value from -20 to 19. Other users can only set nice values from 0 to 19.
+
+To change the niceness of a running process, use `renice` command:
+
+```bash
+renice -n niceness -p PID
+```
+
+or to change niceness of all running processes by a user:
+
+```bash
+renice -n niceness -u username
+```
+
+### ps
+
