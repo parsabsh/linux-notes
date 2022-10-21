@@ -59,6 +59,9 @@
     - [top and htop](#top-and-htop)
     - [nice and renice](#nice-and-renice)
     - [ps](#ps)
+  - [Process Lifecycle](#process-lifecycle)
+  - [/proc directory](#proc-directory)
+  - [Signals](#signals)
 
 # Introduction
 
@@ -1022,3 +1025,17 @@ ps [OPTIONS]
 ```
 
 This is another command for monitoring the running processes. It has a bunch of useful options that are usualy used together. For example `ps aux` is very common. As always, you can keep learning by yourself using commands' manual pages.
+
+## Process Lifecycle
+
+Each process in Linux has a lifecycle. The `STAT` column in `ps` command shows where the process is in its lifecycle. Consider the following image:
+
+![Linux Process](https://totozhang.github.io/2016-01-16-linux-zombieprocess/LinuxZombie1.png)
+
+## /proc directory
+
+Since **_"Everything is a file"_** in Linux, processes are not exception. All processes in Linux, are tracked in a directory with address `/proc`.
+
+If you open and work with this directory, you will learn a lot about processes. You can also use `man 5 proc` command to enter the manual page of process file system in Linux.
+
+## Signals
