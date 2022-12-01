@@ -30,6 +30,11 @@
   - [du command](#du-command)
   - [file command](#file-command)
   - [Vim editor](#vim-editor)
+    - [introduction and installation](#introduction-and-installation)
+    - [Vim Modes](#vim-modes)
+      - [1) Command Mode](#1-command-mode)
+      - [2) Insert Mode](#2-insert-mode)
+    - [How to learn vim?](#how-to-learn-vim)
 - [3) Permissions](#3-permissions)
 - [4) Scripting](#4-scripting)
   - [Variables](#variables)
@@ -430,15 +435,35 @@ This command determines type of a file. In Linux, _file extensions_ don't matter
 
 ## Vim editor
 
+### introduction and installation
+
 Vim editor is among the best editors used in the command-line interface to open, edit and save files. Vim is the updated version of Vi editor that’s why vim is abbreviated as “Vi improved”.
 
-To install vim, enter `sudo apt install vim -y` in your terminal. Then to open a file use the following command:
+To install vim, enter `sudo apt install vim -y` in your terminal. Then to open a file in vim, use the following command (It will create a file if it doesn't exist):
 
 ```bash
 vim file_name
 ```
 
-It will create a file if it doesn't exist.
+### Vim Modes
+
+Now you are in the vim environment. Vim has two modes:
+
+#### 1) Command Mode
+
+When you open any file with vim, you are in the command mode by default. In command mode, you can perform different tasks by using the commands for example to delete a line, to copy the line, and to navigate the cursor in any specified position of the file. If for any reason you are not in the command mode, simply press the `ESC` key, to enter in the command mode.
+
+**Crucial Note:** To save changes, just enter `:w` in command mode and to exit vim, enter `:q`.
+
+#### 2) Insert Mode
+
+To insert something, you have to choose the insert mode, for this purpose, simply press the `i` key to enter the insert mode. In this mode, you can write anything and can add anything to the file.  Once you are done by inserting, press `ESC` key from keyboard and switch insert mode to command-line mode.
+
+### How to learn vim?
+
+There are an infinite number of commands in vim :) but you don't need to learn them all when you start working with it. As you go further in vim, you'll find new commands one by one based on your needs. So the best way of learning vim is to just **use it** every day.
+
+But if you are qiute new to vim, start with vimtutor. Simply type `vimtutor` command in your terminal. This is a good way to start working with vim.
 
 # 3) Permissions
 
