@@ -27,6 +27,9 @@
   - [Redirection](#redirection)
   - [Pipelines](#pipelines)
 - [2) Files and Strings](#2-files-and-strings)
+  - [du command](#du-command)
+  - [file command](#file-command)
+  - [Vim editor](#vim-editor)
 - [3) Permissions](#3-permissions)
 - [4) Scripting](#4-scripting)
   - [Variables](#variables)
@@ -408,6 +411,34 @@ COMMAND --help | grep "what I'm looking for"
 Use it and enjoy :)
 
 # 2) Files and Strings
+
+## du command
+
+```bash
+du [OPTIONS] [ARGUMENT]
+```
+
+This ccommand indicates the _disk usage_ (as its name implies) and can be used without arguments in which the current directory is passed by default. Some of its useful options are `-h, --human-readable`, `-s, --summarize`, `-c, --total`, and `--time`.
+
+## file command
+
+```bash
+file [OPTIONS] file_name
+```
+
+This command determines type of a file. In Linux, _file extensions_ don't matter, So `file` command helps us to figure out the file type. We can use `-b` option to get rid of extra information about the file and only see its type.
+
+## Vim editor
+
+Vim editor is among the best editors used in the command-line interface to open, edit and save files. Vim is the updated version of Vi editor that’s why vim is abbreviated as “Vi improved”.
+
+To install vim, enter `sudo apt install vim -y` in your terminal. Then to open a file use the following command:
+
+```bash
+vim file_name
+```
+
+It will create a file if it doesn't exist.
 
 # 3) Permissions
 
@@ -1095,4 +1126,3 @@ This image summarizes the definitions above:
 ![Groups and Sessions](https://quera.org/qbox/view/fWwTcXjVza/session.png)
 
 **Note:** You can send a signal to a group or session just like a single process.
-
