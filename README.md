@@ -34,6 +34,7 @@
       - [1) Command Mode](#1-command-mode)
       - [2) Insert Mode](#2-insert-mode)
     - [How to learn vim?](#how-to-learn-vim)
+  - [Linux File System](#linux-file-system)
 - [3) Permissions](#3-permissions)
 - [4) Scripting](#4-scripting)
   - [Variables](#variables)
@@ -461,6 +462,14 @@ To insert something, you have to choose the insert mode, for this purpose, simpl
 There are an infinite number of commands in vim :) but you don't need to learn them all when you start working with it. As you go further in vim, you'll find new commands one by one based on your needs. So the best way of learning vim is to just **use it** every day.
 
 But if you are qiute new to vim, start with vimtutor. Simply type `vimtutor` command in your terminal. This is a good way to start working with vim.
+
+## Linux File System
+
+In Linux and many other operating systems, directories can be structured in a tree-like hierarchy. All the files are arranged as a tree and its branches. The topmost directory called the **root (/) directory**. All other directories in Linux can be accessed from the root directory.
+
+The following figure summarizes Linux standard file system hierarchy:
+
+Be sure to refer to the official Linux [Filesystem Hierarchy Standard (FHS)](https://www.pathname.com/fhs/) web page for details about each of these directories and their many subdirectories. Wikipedia also has a good description of the [FHS](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard). This standard should be followed as closely as possible to ensure operational and functional consistency.
 
 # 3) Permissions
 
