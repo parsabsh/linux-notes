@@ -469,6 +469,8 @@ In Linux and many other operating systems, directories can be structured in a tr
 
 The following figure summarizes Linux standard file system hierarchy:
 
+![linux](https://user-images.githubusercontent.com/92635013/205032787-6e77f2c6-968b-4be2-adc9-5fe5a0afba7a.jpg)
+
 Be sure to refer to the official Linux [Filesystem Hierarchy Standard (FHS)](https://www.pathname.com/fhs/) web page for details about each of these directories and their many subdirectories. Wikipedia also has a good description of the [FHS](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard). This standard should be followed as closely as possible to ensure operational and functional consistency.
 
 # 3) Permissions
