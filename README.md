@@ -27,10 +27,9 @@
   - [Redirection](#redirection)
   - [Pipelines](#pipelines)
 - [2) Files and Strings](#2-files-and-strings)
-  - [du command](#du-command)
-  - [file command](#file-command)
+  - [du and file commands](#du-and-file-commands)
   - [Vim editor](#vim-editor)
-    - [introduction and installation](#introduction-and-installation)
+    - [Introduction and Installation](#introduction-and-installation)
     - [Vim Modes](#vim-modes)
       - [1) Command Mode](#1-command-mode)
       - [2) Insert Mode](#2-insert-mode)
@@ -417,15 +416,13 @@ Use it and enjoy :)
 
 # 2) Files and Strings
 
-## du command
+## du and file commands
 
 ```bash
 du [OPTIONS] [ARGUMENT]
 ```
 
 This ccommand indicates the _disk usage_ (as its name implies) and can be used without arguments in which the current directory is passed by default. Some of its useful options are `-h, --human-readable`, `-s, --summarize`, `-c, --total`, and `--time`.
-
-## file command
 
 ```bash
 file [OPTIONS] file_name
@@ -435,7 +432,7 @@ This command determines type of a file. In Linux, _file extensions_ don't matter
 
 ## Vim editor
 
-### introduction and installation
+### Introduction and Installation
 
 Vim editor is among the best editors used in the command-line interface to open, edit and save files. Vim is the updated version of Vi editor that’s why vim is abbreviated as “Vi improved”.
 
