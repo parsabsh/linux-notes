@@ -35,6 +35,23 @@
       - [2) Insert Mode](#2-insert-mode)
     - [How to learn vim?](#how-to-learn-vim)
   - [Linux File System](#linux-file-system)
+  - [View File Contents](#view-file-contents)
+    - [more](#more)
+    - [less](#less)
+    - [head](#head)
+    - [tail](#tail)
+    - [cut](#cut)
+    - [wc](#wc)
+    - [sort](#sort)
+    - [grep](#grep)
+    - [find](#find)
+    - [wildcards](#wildcards)
+    - [brace expansion](#brace-expansion)
+  - [File Compression](#file-compression)
+    - [gzip](#gzip)
+    - [bzip2](#bzip2)
+    - [Archive Multiple Files](#archive-multiple-files)
+  - [awk](#awk)
 - [3) Permissions](#3-permissions)
 - [4) Scripting](#4-scripting)
   - [Variables](#variables)
@@ -423,7 +440,7 @@ Use it and enjoy :)
 du [OPTIONS] [ARGUMENT]
 ```
 
-This ccommand indicates the _disk usage_ (as its name implies) and can be used without arguments in which the current directory is passed by default. Some of its useful options are `-h, --human-readable`, `-s, --summarize`, `-c, --total`, and `--time`.
+This command indicates the _disk usage_ (as its name implies) and can be used without arguments in which the current directory is passed by default. Some of its useful options are `-h, --human-readable`, `-s, --summarize`, `-c, --total`, and `--time`.
 
 ```bash
 file [OPTIONS] file_name
@@ -472,6 +489,337 @@ The following figure summarizes Linux standard file system hierarchy:
 ![linux](https://user-images.githubusercontent.com/92635013/205032787-6e77f2c6-968b-4be2-adc9-5fe5a0afba7a.jpg)
 
 Be sure to refer to the official Linux [Filesystem Hierarchy Standard (FHS)](https://www.pathname.com/fhs/) web page for details about each of these directories and their many subdirectories. Wikipedia also has a good description of the [FHS](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard). This standard should be followed as closely as possible to ensure operational and functional consistency.
+
+## View File Contents
+
+We have already learned the `cat` command to view files. Here, we introduce some more commads to do this.
+
+**Note:** All of the following commands also work for multiple files.
+
+### more
+
+This command is for better viewing long text files in terminal. Using this command, we can view the file one page at a time. We can also move in the file with arrow keys. Some keys we can use in `more` command:
+
+- `space`: Next page
+- `enter`: Next line
+- `B`: Previous page
+- `=`: Current line number
+- `q`: Exit back to terminal
+
+If we want to display file beginning from line number `N`, we should open the file like this:
+
+```bash
+more +<N> example.txt
+```
+
+### less
+
+This command is like `more`, but it has more advanced options! Some of them are given here:
+
+- `G`: First page
+- `Shift + G`: Last page
+- `:<N>`: Go ahead `N` lines
+- `/[string]`: Search forward for the specified string
+- `?[string]`: Search backward for the specified string
+- `N`: Next match during a search
+- `Shift + N`: Previous match during a search
+
+These two commands are faster with big files because they load them page by page (a text editor loads the whole file into the memory), so these commands are often used in pipelines too. If you want to see the results of a command which takes a lot of time to completely execute, just pass the output to `less` or `more`. For instance, if you want to see all log files of your system, you can run:
+
+```bash
+find / -name "*.log" | less
+```
+
+### head
+
+Prints the first 10 lines of a file. To change this number, there are two options:
+
+- `-c, --bytes=[-]NUM`: Print the first NUM bytes; with the leading '-', print all but the last NUM bytes
+- `-n, --lines=[-]NUM`: Print the first NUM lines; with the leading '-', print all but the last NUM lines
+
+### tail
+
+Prints the last 10 lines of a file. To change this number, there are two options:
+
+- `-c, --bytes=[+]NUM`: Print the last NUM bytes; or use -c +NUM to print starting with byte NUM
+- `-n, --lines=[+]NUM`: output the last NUM lines; or use -n +NUM to output starting with line NUM
+
+As always, we can use these command in pipeline. For example, suppose we want to print lines 117 to 122 of a file. We can use the following pipeline command:
+
+```bash
+cat file.txt | head -n 122 | tail +117
+```
+
+### cut
+
+This command is used to print selected parts of lines of a file. Suppose we want to print the first 5 characters of each line of the file. We can use `-b` or `-c` options:
+
+```bash
+cut -b 1-5 file.txt
+```
+
+If we do not type any number on each side of `-`, it will be interpreted as the end or beginning of the line. For instance, the following command prints from the 8th character to the end of each line:
+
+```bash
+cut -c 8- file.txt
+```
+
+Suppose we have a `.csv` file in which fields are delimited using the character `","` and we want to print only some columns of it (let's say 2nd and 4th columns). We first specify the delimiter using `-d` option and then we select the field we want using `-d` option:
+
+```bash
+cut -d "," -f 2,4 file.csv
+```
+
+Note that the default output delimiter is the input delimiter. If we want to specify our own desired output delimiter, we could use `--output-delimiter=STRING`.
+
+### wc
+
+This command prints line, word, and byte count for a file. Some of its option are listed below:
+
+- `-c, --bytes`: print the byte counts
+- `-m, --chars`: print the character counts
+- `-w, --words`: print the word counts
+- `-l, --lines`: print the newline counts
+- `-L, --max-line-length`: print the maximum display width
+
+### sort
+
+Using this command, we will be able to sort the output (i.e. the content of files). Some important options are given here:
+
+- `-f, --ignore-case`: fold lower case to upper case characters
+- `-r, --reverse`: reverse the result of comparisons
+- `-n, --numeric-sort`: compare according to string numerical value
+- `-k, --key=[KEYDEF]`: sort via a key; KEYDEF gives location and type
+- `-t, --field-separator=SEP`: use SEP instead of non-blank to blank transition
+
+Suppose we have a `.csv` file and we want to sort according to the values in the third column. We can do this by `sort` command in the following manner:
+
+```bash
+sort -t ',' -k 3 -n -r << EOF
+parsa,bashari,19,pass
+amir,hamidzade,17,pass
+alireza,sohrabi,20,pass
+ehsan,karbalae,8,fail
+arash,ziyae,18,pass
+reza,dadashpoor,4,fail
+EOF
+```
+
+and the output will be:
+
+```bash
+alireza,sohrabi,20,pass
+parsa,bashari,19,pass
+arash,ziyae,18,pass
+amir,hamidzade,17,pass
+ehsan,karbalae,8,fail
+reza,dadashpoor,4,fail
+```
+
+### grep
+
+This command is a powerful tool for searching for a pattern in files. The total structure of this command is as follows:
+
+```bash
+grep [OPTION]... PATTERNS [FILE]...
+```
+
+Note that patterns are in **regex** format. If you are not familiar with regex or regular expressions, you can see [this tutorial](https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285). For practicing and testing your regular expressions, [regex101](https://regex101.com/) is a very useful tool.
+
+grep has a lot of useful options which enable you to perform complicated searches. So, it is highly recommended to run `grep --help` and see them all. But here is a list of some useful options of this command:
+
+- `-i, --ignore-case`: ignore case distinctions in pattern and data
+- `-w, --word-regexp`: match only whole words
+- `-v, --inverse-match`: select non-matching lines
+- `-c, --count`: print only a count of selected lines
+- `-n, --line-number`: print line number with output lines
+- `--color`: use markers to highlight the matching string
+
+For example, suppose we want to see errors and warnings when compiling a C program. We can use the following command:
+
+```bash
+gcc test.c |& grep --color -iE "error|warning"
+```
+
+Note that the `|&` is a way to send `stderr` instead of `stdout` through the pipeline to the next command. As a practice, search about `-E` option (obvoiusly first see `--help`).
+
+### find
+
+This command is used to searching files in terminal. It doesn't obey general structure of previous commands and it has the following structure:
+
+```bash
+find <where to start searching> <expression determines what to find> <-options> <what to find> 
+```
+
+**-name option**: With this option we specify the name of files or directories we are looking for. For instance:
+
+```bash
+find . -name "file/dir name"
+```
+
+**-type option**: If we are only looking for files with that name, we use this option with `f` (for directories we use `d`). For example:
+
+```bash
+find . -type d -name "dir name"
+```
+
+**-size [+/-] [SIZE] [c/k/M/G]**: We can specify our desirable size using this option. Consider the following examples:
+
+```bash
+find . -type f -size 100c  # exactly 100 bytes
+find . -type f -size +1M   # more than 1 megabyte
+find . -type f -size +100k -size -800k  # between 100 and 800 kilobytes
+```
+
+**-maxdepth and -mindepth options**: We can specify the maximum and minimum depth of search in the directories with these options.
+
+**-empty**: This option only shows empty files and directories. For example, if we are looking for empty directories in at maximum depth of 2, we can use the following command:
+
+```bash
+find . -type d -maxdepth 2 -empty -name "dir name"
+```
+
+`find` has two parts **search** and **action**. We told about the search part. Now, we introduce the action part.
+
+We can do an operation on each of our search results. The default action in the `find` command is `-print`. We can change this by the `-exec` option. Using this action, we can perform commands on the results of `find` command. For example we want to show the type of each file:
+
+```bash
+find . -name *.py -exec file {} \;
+```
+
+The arguments of `-exec` are:
+
+- **Command**: Every command that is executabe in our shell
+- **Placeholder**: The `{}` is the place where the search results will be in
+- **Delimiter**: A sign to show that the command is finished. We can use `+` or `;`. The `;` sign run `n` commands where `+` runs one command with `n` arguments.
+
+We can use `-delete` action to delete the found files.
+
+### wildcards
+
+Wildcard characters in Unix/Linux allow the matching of files in an abstracted way. Three main wildcards are:
+
+1. **\***: Zero or more characters
+2. **?**: One character
+3. **[ ]**: One of the characters between brackets
+
+For instance, if we have downloaded a large video file that was split into lots of small chunks. What is the easiest way to merge them back into one single video? If the files were named as `ironman.001.mpeg` to `ironman.099.mpeg`, we could merge them through one line of command:
+
+```bash
+cat ironman.*.mpeg > ironman.mpeg
+```
+
+or we can do this:
+
+```bash
+cat ironman.0??.mpeg > ironman.mpeg
+```
+
+### brace expansion
+
+For example, suppose we want to download a whole season of a TV series. We could do this using brace expansion:
+
+```bash
+wget download.example.com/Friends.S04.E{01..24}.mkv
+```
+
+Note that brace expansion also works for english letters (e.g. `{p..w}`).
+
+## File Compression
+
+Compression of big files is an important task in the data age. Here we introduce some basic compression capabilites of linux. To start, we need a large file to perform compression. We create a file with size of 100M using the following command:
+
+```bash
+cat /dev/random | tr -dc "[:alpha:]" | head -c 100M > largefile
+```
+
+### gzip
+
+This command enables us to compress a large file to a `.gz` file:
+
+```bash
+gzip largefile
+```
+
+You can check the result with `ls -lh`. Then we can decompress `largefile.gz` file using `gunzip` command:
+
+```bash
+gunzip largefile.gz
+```
+
+### bzip2
+
+This command is similar to `gzip` but make more compression and also take longer to compress. The compress and decompress commands are really similar to gzip:
+
+```bash
+bzip2 largefile
+bunzip2 largefile.bz2
+```
+
+### Archive Multiple Files
+
+In `gzip` and `bzip2` commands, we could only compress one giant file. In order to compress multiple files into a single file, we first need to put them together in a largefile and then compress it using previous commands. The process of putting together in linux is called **archiving**. We use `tar` command to do so. It has so many options and as usual I recommend to see `tar --help` for more information.
+
+To create a new archive, use `-c` option and to specify the files, use `-f` option.
+
+```bash
+tar -cf archive.tar foo bar  # Create archive.tar from files foo and bar
+tar -cvf archive.tar file{3..10} folder{1..2}  # -v option prints the file names
+```
+
+Using `-t` option, you can see the list the contents of an archive.
+
+```bash
+tar -tf archive.tar
+```
+
+Then we can use `-x` to extract files from an archive.
+
+```bash
+tar -xf archive.tar
+```
+
+Although we can manually compress the generated tar file using `gzip`, the `tar` command has provided us with a option (`-z, --gzip`) to do this automatically.
+
+```bash
+tar -zcvf friends.tar.gz friends.S03.E{01..24}
+```
+
+Then we can decompress and extract our files using the following command:
+
+```bash
+tar -zxvf friends.tar.gz
+```
+
+We can use `-j, --bzip2` instead of `-z` to do the compression using `bzip2`.
+
+## awk
+
+Awk is a scripting language used for manipulating structured data and generating reports. The general structure of this command is:
+
+```bash
+awk '{action}' file
+```
+
+We can apply different actions but we here only cover `print`. Suppose we have a `.csv` file. We can print the second and fourth columns using the following command:
+
+```bash
+awk '{print $2, $4}' data.csv
+```
+
+We can use `$NF` variable to access last column.
+
+```bash
+awk '{print $1, $NF}' data.csv
+```
+
+We also can use regex to select only rows that match a specific pattern. In this case, the general structure of `awk` command becomes this:
+
+```bash
+awk '/REGEX/{action}' file
+```
+
+`awk` command is a very broad topic and I'm not explain it in details here. But I highly recommend to search and learn it. You can start by reading this [geeksforgeeks tutorial](https://www.geeksforgeeks.org/awk-command-unixlinux-examples/).
 
 # 3) Permissions
 
