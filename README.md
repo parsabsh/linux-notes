@@ -123,11 +123,11 @@ You can find a complete tree of linux distros [here](https://upload.wikimedia.or
 
 ### Shell
 
-Shell is an interface that connects you to the operating system (OS) and lets you work with it. Shell is responsible for interpreting commands and return the results back. The default shell in ubuntu (and many other distros) is _**bash**_.
+Shell is an interface that connects you to the operating system (OS) and lets you work with it. Shell is responsible for interpreting commands and returning the results back. The default shell in Ubuntu (and many other distros) is _**bash**_.
 
 ### Terminal
 
-Terminal is a graphical software that you can access any shell you want through it.
+A terminal is a graphical software that you can access any shell you want through it.
 ![image](https://user-images.githubusercontent.com/92635013/195100325-217ca755-2767-470c-995d-fbf9fa89c065.png)
 
 ## General Structure of Linux Commands
@@ -140,7 +140,7 @@ COMMAND [OPTIONS] [ARGUMENTS]
 - **OPTIONS:** We can put zero or more options here. They specify the details of our command. Options are denoted by **_"-"_** or **_"--"_** sign.
 - **ARGUMENTS:** These are the inputs that the command is going to operate on.
 
-**Be aware:** All of above parts are case sensitive.
+**Be aware:** All of the above parts are case-sensitive.
 
 **Help:** You can get information about a command, using one of the following commands:
 
@@ -181,7 +181,7 @@ _**NOTE**_: Super key is the key with windows sign on it (= Windows key).
 echo <argument>
 ```
 
-The simplest command in linux is `echo` which simply prints out every argument that is passed to it. Try typing `echo hello linux!` in your terminal!
+The simplest command in Linux is `echo` which simply prints out every argument that is passed to it. Try typing `echo hello Linux!` in your terminal!
 
 ## pwd
 
@@ -189,7 +189,7 @@ The simplest command in linux is `echo` which simply prints out every argument t
 pwd
 ```
 
-In linux, a **directory** is something that contains some other files and directories. When you open the _terminal_, you are in `/home/<username>` by default (where `<username>` is your account name).
+In Linux, a **directory** is something that contains some other files and directories. When you open the _terminal_, you are in `/home/<username>` by default (where `<username>` is your account name).
 
 By entering `pwd` in your terminal (which stands for `print work directory`), you can see where you are in the file system.
 
@@ -202,7 +202,7 @@ cd <address>
 `cd` stands for `change directory` and as its name implies, we can use it to move in the file system.
 (`<address>` can be either relative or absolute)
 
-**NOTE:** We can use `.` and  `..` in the `<address>` part. `.` is `current directory` and `..` is `parent directory`. For example if we are in `/home/parsa` and we run `cd ..`, we will be moved to `/home`.
+**NOTE:** We can use `.` and  `..` in the `<address>` part. `.` is `current directory` and `..` is `parent directory`. For example, if we are in `/home/parsa` and we run `cd ..`, we will be moved to `/home`.
 
 **~** : This sign stands for the current user's home directory which is `/home/<username>`. For example `cd ~/Downloads/` will move me to `/home/parsa/Downloads/`.
 
@@ -212,7 +212,7 @@ cd <address>
 ls [OPTIONS]... [FILE]...
 ```
 
-This command, lists information about the FILEs (We often use this command without any arguments which takes the current directory as argument by default)
+This command lists information about the FILEs (We often use this command without any arguments which takes the current directory as an argument by default)
 
 **_important options_**
 
@@ -230,9 +230,9 @@ This command, lists information about the FILEs (We often use this command witho
 history [<number of commands>]
 ```
 
-If we enter `history` in terminal, we can see the complete history of our entered commands. We can also restrict the number of commands to see. For instance, by entering `history 3`, we can see our last 3 commands.
+If we enter `history` in the terminal, we can see the complete history of our entered commands. We can also restrict the number of commands to see. For instance, by entering `history 3`, we can see our last 3 commands.
 
-Moreover, we are able to clear our history using `history -c` command.
+Moreover, we are able to clear our history using the `history -c` command.
 
 ## mkdir
 
@@ -262,9 +262,9 @@ mkdir -p parent/child
 rmdir [OPTIONS]... [DIRECTORY]...
 ```
 
-This command removes `DIRECTORY(ies)` if they're empty. We have the `-p` option just like the one we had in `mkdir` command.
+This command removes `DIRECTORY(ies)` if they're empty. We have the `-p` option just like the one we had in the `mkdir` command.
 
-To remove a non-empty directory, we should use `rm` command which we will learn about later.
+To remove a non-empty directory, we should use the `rm` command which we will learn about later.
 
 ## touch
 
@@ -280,14 +280,14 @@ This command creates a new file, if it doesn't already exist. Otherwise, it will
 cat [OPTION]... file_name
 ```
 
-We can see contents of a file using `cat` command. This command has some useful options like `-n` for printing line numbers, `-b` for ignoring blank lines, and so on. Use `cat --help` for more information.
+We can see the contents of a file using the `cat` command. This command has some useful options like `-n` for printing line numbers, `-b` for ignoring blank lines, and so on. Use `cat --help` for more information.
 
 <details>
 <summary><b>Use of cat in redirections</b></summary>
 
-If `cat` command is used without any arguments, it will copy stdin into stdout. This attribute is useful in redirection (which we will learn about in a minute).
+If the `cat` command is used without any arguments, it will copy stdin into stdout. This attribute is useful in redirection (which we will learn about in a minute).
 
-For example we can use the following command to simply write in a file:
+For example, we can use the following command to simply write in a file:
 
 ```bash
 cat > file_name
@@ -395,14 +395,14 @@ Sun Oct 16 12:13:50 AM +0330 2022
 
 ## Standard Streams
 
-A **stream** is simply a river of data. Linux commands (or more precisely, linux _processes_) talk to each other in terms of streams.
+A **stream** is simply a river of data. Linux commands (or more precisely, Linux _processes_) talk to each other in terms of streams.
 
-Each linux process has three **standard streams** to communicate with others. It gets and gives data through them. The standard streams are **"Standard Input"**, **"Standard Output"**, and **"Standard Error"**. Each of them has a code which you can see here:
+Each Linux process has three **standard streams** to communicate with others. It gets and gives data through them. The standard streams are **"Standard Input"**, **"Standard Output"**, and **"Standard Error"**. Each of them has a code which you can see here:
 
 ![stream](https://user-images.githubusercontent.com/92635013/196439211-22a117f1-61a5-4a2f-805b-8560f5c0f4b9.png)
 
 
-- **stdin:** The command can get its input through stdin (standard input) stream. In raw use of commands, the stdin comes from keyboard as you type in the terminal.
+- **stdin:** The command can get its input through the stdin (standard input) stream. In raw use of commands, the stdin comes from the keyboard as you type in the terminal.
 
 - **stdout:** While the command is running, it sends some outputs that go through the stdin (standard output). In raw use of commands, the stdout stream is shown in the terminal.
 
@@ -432,15 +432,15 @@ Pipelines let us give the output of a command as input of another one. Consider 
 
 ![pipe](https://user-images.githubusercontent.com/92635013/196032588-5bb357fc-5297-4195-b0fa-3b81696c8cee.png)
 
-Using pipelines, we can combine multiple commands and make powerful commands to do a lots of things in a single line.
+Using pipelines, we can combine multiple commands and make powerful commands to do a lot of things in a single line.
 
-The general structure of piplines is like this:
+The general structure of pipelines is like this:
 
 ```bash
 command1 | command2 | ...
 ```
 
-As an example, here I introduce a pipline which I often use when I want to find out a specific option of a command:
+As an example, here I introduce a pipeline that I often use when I want to find out a specific option of a command:
 
 ```bash
 COMMAND --help | grep "what I'm looking for"
@@ -450,11 +450,11 @@ Use it and enjoy :)
 
 ## Package Managers
 
-Package Managers are essentially software applications that help users to: Search, Download, Install, Remove and Update software applications on their computer. Experienced Linux users will very rarely download software from websites or any other location. The primary reasons for this included aspects as ease of use, security and the fact that most Linux distributions have a list of sources where users can download free open source software packages.
+Package Managers are essentially software applications that help users to Search, Download, Install, Remove, and Update software applications on their computer. Experienced Linux users will very rarely download software from websites or any other location. The primary reasons for this included aspects such as ease of use, security, and the fact that most Linux distributions have a list of sources where users can download free open-source software packages.
 
-For most novice users of Linux, the most common and popular package managers they are likely to first start using is the `apt` (Advanced Package Tool) because it is most widely shipped as the default Package Manager for users of Debian, Ubuntu and Mint. We will cover some basic and common commands of `apt`:
+For most novice users of Linux, the most common and popular package manager they are likely to first start using is the `apt` (Advanced Package Tool) because it is most widely shipped as the default Package Manager for users of Debian, Ubuntu, and Mint. We will cover some basic and common commands of `apt`:
 
-First of all, we update our package manager, meaning that it updates its package list if there is any new package or new version of a package is available.
+First of all, we update our package manager, meaning that it updates its package list if there is any new package or new version of a package available.
 
 ```bash
 sudo apt update
@@ -498,7 +498,7 @@ This command indicates the _disk usage_ (as its name implies) and can be used wi
 file [OPTIONS] file_name
 ```
 
-This command determines type of a file. In Linux, _file extensions_ don't matter, So `file` command helps us to figure out the file type. We can use `-b` option to get rid of extra information about the file and only see its type.
+This command determines type of a file. In Linux, _file extensions_ don't matter, So the `file` command helps us to figure out the file type. We can use `-b` option to get rid of extra information about the file and only see its type.
 
 ## Vim editor
 
@@ -524,17 +524,17 @@ When you open any file with vim, you are in the command mode by default. In comm
 
 #### 2) Insert Mode
 
-To insert something, you have to choose the insert mode, for this purpose, simply press the `i` key to enter the insert mode. In this mode, you can write anything and can add anything to the file.  Once you are done by inserting, press `ESC` key from keyboard and switch insert mode to command-line mode.
+To insert something, you have to choose the insert mode, for this purpose, simply press the `i` key to enter the insert mode. In this mode, you can write anything and can add anything to the file.  Once you are done inserting, press the `ESC` key from the keyboard and switch insert mode to command-line mode.
 
 ### How to learn vim?
 
 There are an infinite number of commands in vim :) but you don't need to learn them all when you start working with it. As you go further in vim, you'll find new commands one by one based on your needs. So the best way of learning vim is to just **use it** every day.
 
-But if you are qiute new to vim, start with vimtutor. Simply type `vimtutor` command in your terminal. This is a good way to start working with vim.
+But if you are quite new to vim, start with vimtutor. Simply type `vimtutor` command in your terminal. This is a good way to start working with vim.
 
 ## Linux File System
 
-In Linux and many other operating systems, directories can be structured in a tree-like hierarchy. All the files are arranged as a tree and its branches. The topmost directory called the **root (/) directory**. All other directories in Linux can be accessed from the root directory.
+In Linux and many other operating systems, directories can be structured in a tree-like hierarchy. All the files are arranged as a tree and its branches. The topmost directory is called the **root (/) directory**. All other directories in Linux can be accessed from the root directory.
 
 The following figure summarizes Linux standard file system hierarchy:
 
@@ -544,21 +544,21 @@ Be sure to refer to the official Linux [Filesystem Hierarchy Standard (FHS)](htt
 
 ## View File Contents
 
-We have already learned the `cat` command to view files. Here, we introduce some more commads to do this.
+We have already learned the `cat` command to view files. Here, we introduce some more commands to do this.
 
 **NOTE:** All of the following commands also work for multiple files.
 
 ### more
 
-This command is for better viewing long text files in terminal. Using this command, we can view the file one page at a time. We can also move in the file with arrow keys. Some keys we can use in `more` command:
+This command is for better viewing long text files in the terminal. Using this command, we can view the file one page at a time. We can also move in the file with arrow keys. Some keys we can use in the `more` command:
 
 - `space`: Next page
 - `enter`: Next line
 - `B`: Previous page
 - `=`: Current line number
-- `q`: Exit back to terminal
+- `q`: Exit back to the terminal
 
-If we want to display file beginning from line number `N`, we should open the file like this:
+If we want to display a file beginning from line number `N`, we should open the file like this:
 
 ```bash
 more +<N> example.txt
@@ -596,7 +596,7 @@ Prints the last 10 lines of a file. To change this number, there are two options
 - `-c, --bytes=[+]NUM`: Print the last NUM bytes; or use -c +NUM to print starting with byte NUM
 - `-n, --lines=[+]NUM`: output the last NUM lines; or use -n +NUM to output starting with line NUM
 
-As always, we can use these command in pipeline. For example, suppose we want to print lines 117 to 122 of a file. We can use the following pipeline command:
+As always, we can use these commands in pipelines. For example, suppose we want to print lines 117 to 122 of a file. We can use the following pipeline command:
 
 ```bash
 cat file.txt | head -n 122 | tail +117
@@ -626,7 +626,7 @@ Note that the default output delimiter is the input delimiter. If we want to spe
 
 ### wc
 
-This command prints line, word, and byte count for a file. Some of its option are listed below:
+This command prints line, word, and byte count for a file. Some of its options are listed below:
 
 - `-c, --bytes`: print the byte counts
 - `-m, --chars`: print the character counts
@@ -644,7 +644,7 @@ Using this command, we will be able to sort the output (i.e. the content of file
 - `-k, --key=[KEYDEF]`: sort via a key; KEYDEF gives location and type
 - `-t, --field-separator=SEP`: use SEP instead of non-blank to blank transition
 
-Suppose we have a `.csv` file and we want to sort according to the values in the third column. We can do this by `sort` command in the following manner:
+Suppose we have a `.csv` file and we want to sort according to the values in the third column. We can do this by the `sort` command in the following manner:
 
 ```bash
 sort -t ',' -k 3 -n -r << EOF
@@ -697,13 +697,13 @@ Note that the `|&` is a way to send `stderr` instead of `stdout` through the pip
 
 ### find
 
-This command is used to searching files in terminal. It doesn't obey general structure of previous commands and it has the following structure:
+This command is used to search files in the terminal. It doesn't obey the general structure of previous commands and it has the following structure:
 
 ```bash
 find <where to start searching> <expression determines what to find> <-options> <what to find> 
 ```
 
-**-name option**: With this option we specify the name of files or directories we are looking for. For instance:
+**-name option**: With this option, we specify the name of the files or directories we are looking for. For instance:
 
 ```bash
 find . -name "file/dir name"
@@ -725,7 +725,7 @@ find . -type f -size +100k -size -800k  # between 100 and 800 kilobytes
 
 **-maxdepth and -mindepth options**: We can specify the maximum and minimum depth of search in the directories with these options.
 
-**-empty**: This option only shows empty files and directories. For example, if we are looking for empty directories in at maximum depth of 2, we can use the following command:
+**-empty**: This option only shows empty files and directories. For example, if we are looking for empty directories at a maximum depth of 2, we can use the following command:
 
 ```bash
 find . -type d -maxdepth 2 -empty -name "dir name"
@@ -733,7 +733,7 @@ find . -type d -maxdepth 2 -empty -name "dir name"
 
 `find` has two parts **search** and **action**. We told about the search part. Now, we introduce the action part.
 
-We can do an operation on each of our search results. The default action in the `find` command is `-print`. We can change this by the `-exec` option. Using this action, we can perform commands on the results of `find` command. For example we want to show the type of each file:
+We can do an operation on each of our search results. The default action in the `find` command is `-print`. We can change this by the `-exec` option. Using this action, we can perform commands on the results of the `find` command. For example, we want to show the type of each file:
 
 ```bash
 find . -name *.py -exec file {} \;
@@ -741,15 +741,15 @@ find . -name *.py -exec file {} \;
 
 The arguments of `-exec` are:
 
-- **Command**: Every command that is executabe in our shell
+- **Command**: Every command that is executable in our shell
 - **Placeholder**: The `{}` is the place where the search results will be in
-- **Delimiter**: A sign to show that the command is finished. We can use `+` or `;`. The `;` sign run `n` commands where `+` runs one command with `n` arguments.
+- **Delimiter**: A sign to show that the command is finished. We can use `+` or `;`. The `;` sign runs `n` commands where `+` sign runs one command with `n` arguments.
 
 We can use `-delete` action to delete the found files.
 
 ### wildcards
 
-Wildcard characters in Unix/Linux allow the matching of files in an abstracted way. Three main wildcards are:
+Wildcard characters in Unix/Linux allow the matching of files in an abstract way. Three main wildcards are:
 
 1. **\***: Zero or more characters
 2. **?**: One character
@@ -775,11 +775,11 @@ For example, suppose we want to download a whole season of a TV series. We could
 wget download.example.com/Friends.S04.E{01..24}.mkv
 ```
 
-Note that brace expansion also works for english letters (e.g. `{p..w}`).
+Note that brace expansion also works for English letters (e.g. `{p..w}`).
 
 ## File Compression
 
-Compression of big files is an important task in the data age. Here we introduce some basic compression capabilites of linux. To start, we need a large file to perform compression. We create a file with size of 100M using the following command:
+Compression of big files is an important task in the data age. Here we introduce some basic compression capabilities of Linux. To start, we need a large file to perform compression. We create a file with a size of 100M using the following command:
 
 ```bash
 cat /dev/random | tr -dc "[:alpha:]" | head -c 100M > largefile
@@ -801,7 +801,7 @@ gunzip largefile.gz
 
 ### bzip2
 
-This command is similar to `gzip` but make more compression and also take longer to compress. The compress and decompress commands are really similar to gzip:
+This command is similar to `gzip` but makes more compression and also takes longer to compress. The compress and decompress commands are really similar to gzip:
 
 ```bash
 bzip2 largefile
@@ -810,16 +810,16 @@ bunzip2 largefile.bz2
 
 ### Archive Multiple Files
 
-In `gzip` and `bzip2` commands, we could only compress one giant file. In order to compress multiple files into a single file, we first need to put them together in a largefile and then compress it using previous commands. The process of putting together in linux is called **archiving**. We use `tar` command to do so. It has so many options and as usual I recommend to see `tar --help` for more information.
+In `gzip` and `bzip2` commands, we could only compress one giant file. In order to compress multiple files into a single file, we first need to put them together in a largefile and then compress it using previous commands. The process of putting together in Linux is called **archiving**. We use `tar` command to do so. It has so many options and as usual, I recommend seeing `tar --help` for more information.
 
-To create a new archive, use `-c` option and to specify the files, use `-f` option.
+To create a new archive, use `-c` option, and to specify the files, use `-f` option.
 
 ```bash
 tar -cf archive.tar foo bar  # Create archive.tar from files foo and bar
 tar -cvf archive.tar file{3..10} folder{1..2}  # -v option prints the file names
 ```
 
-Using `-t` option, you can see the list the contents of an archive.
+Using `-t` option, you can see the list of the contents of an archive.
 
 ```bash
 tar -tf archive.tar
@@ -831,7 +831,7 @@ Then we can use `-x` to extract files from an archive.
 tar -xf archive.tar
 ```
 
-Although we can manually compress the generated tar file using `gzip`, the `tar` command has provided us with a option (`-z, --gzip`) to do this automatically.
+Although we can manually compress the generated tar file using `gzip`, the `tar` command has provided us with an option (`-z, --gzip`) to do this automatically.
 
 ```bash
 tar -zcvf friends.tar.gz friends.S03.E{01..24}
@@ -859,25 +859,25 @@ We can apply different actions but we here only cover `print`. Suppose we have a
 awk '{print $2, $4}' data.csv
 ```
 
-We can use `$NF` variable to access last column.
+We can use `$NF` variable to access the last column.
 
 ```bash
 awk '{print $1, $NF}' data.csv
 ```
 
-We also can use regex to select only rows that match a specific pattern. In this case, the general structure of `awk` command becomes this:
+We also can use regex to select only rows that match a specific pattern. In this case, the general structure of the `awk` command becomes this:
 
 ```bash
 awk '/REGEX/{action}' file
 ```
 
-`awk` command is a very broad topic and I'm not explain it in details here. But I highly recommend to search and learn it. You can start by reading this [geeksforgeeks tutorial](https://www.geeksforgeeks.org/awk-command-unixlinux-examples/).
+The `awk` command is a very broad topic and I'm not explaining it in detail here. But I highly recommend searching and learning it. You can start by reading this [geeksforgeeks tutorial](https://www.geeksforgeeks.org/awk-command-unixlinux-examples/).
 
 # 3) Permissions
 
-Linux’s major difference from other operating systems is its ability to have multiple users. Linux is designed to allow more than one user to have access to the system at the same time. In order for this multiuser design to work properly, there needs to be a method to protect users from each other. This is where permissions come in to play.
+Linux’s major difference from other operating systems is its ability to have multiple users. Linux is designed to allow more than one user to have access to the system at the same time. In order for this multiuser design to work properly, there needs to be a method to protect users from each other. This is where permissions come into play.
 
-**NOTE:** For more information on the topics in this chapter, I recommend to see [here](https://www.linode.com/docs/guides/linux-users-and-groups/).
+**NOTE:** For more information on the topics in this chapter, I recommend seeing [here](https://www.linode.com/docs/guides/linux-users-and-groups/).
 
 ## Linux Accounts and Groups
 
@@ -887,11 +887,11 @@ A user is an entity that can manipulate files and perform several other operatio
 
 Linux-based systems have two types of users: system and normal users. System users are entities created by the system to run non-interactive processes, i.e., the processes that run in the background and do not require human interaction.
 
-After installation of the operating system, the ID 0 is assigned to the root user and the IDs 1 to 999 (both inclusive) are assigned to the system users and hence the ids for local user begins from 1000 onwards.
+After installation of the operating system, the ID 0 is assigned to the root user, and the IDs 1 to 999 (both inclusive) are assigned to the system users hence the ids for local user begins from 1000 onwards.
 
 ### Group
 
-Groups are collections of users. Creating and managing groups is one of the simplest ways to deal with multiple users simultaneously, especially when dealing with permissions. So, instead of manipulating each user's permissions one by one, we just need to add it to a group with some specific set of permissions.
+Groups are collections of users. Creating and managing groups is one of the simplest ways to deal with multiple users simultaneously, especially when dealing with permissions. So, instead of manipulating each user's permissions one by one, we just need to add the user to a group with some specific set of permissions.
 
 ### /etc/passwd
 
@@ -917,13 +917,13 @@ parsa:x:1000:1000:parsa,,,:/home/parsa:/bin/bash
 
 You can see that there is an `x` in the password field. This is due to the fact that your OS stores the encoded value of passwords in `/etc/shadow` which as a normal user, you do not have permission to read.
 
-Using `id` command, you can see user and group information about each specified user or (when user omitted) for the current user.
+Using the `id` command, you can see user and group information about each specified user or (when the user argument is omitted) for the current user.
 
-**Curiosity**: This file is a good file to practice what you learned in the previous chapter on. Try `awk` and `sort` commands on it.
+**Curiosity**: This file is a good file to practice what you learned in the previous chapter. Try `awk` and `sort` commands on it.
 
 ## Manage Users and Groups
 
-**NOTE**: You may need root privilages to execute some of the following commands. We will discuss about root user later. For now, just add `sudo` before your commands.
+**NOTE**: You may need root privileges to execute some of the following commands. We will discuss the root user later. For now, just add `sudo` before your commands.
 
 ### Create and Delete Users
 
@@ -948,7 +948,7 @@ passwd username
 
 There is another way to create a new user which is easier. Instead of `useradd`, try `adduser`! It will ask you some questions (most of them are optional).
 
-After you created a new user, go and check `/etc/passwd` last row. You will see there is a new account added to this file, and also a new group has been created as its primary group.
+After you created a new user, go and check the last row of `/etc/passwd`. You will see there is a new account added to this file, and also a new group has been created as its primary group.
 
 In order to delete a user account, we can use `deluser` or `userdel` commands. There both have options for deleting the home directory and the files owned by the user. User their help pages to find out.
 
@@ -961,7 +961,7 @@ sudo groupadd name
 sudo addgroup name
 ```
 
-In order to delete a group, we can use `delgroup` or `groupdel` commands. As always, see the help pages!
+In order to delete a group, we can use the `delgroup` or `groupdel` commands. As always, see the help pages!
 
 ### Change User Properties
 
@@ -983,7 +983,7 @@ sudo usermod -aG [groupname] [username]
 
 Now, if you run `id [username]`, you will see that the new group is added to its groups list.
 
-To delete a user from a group, we can use `gpasswd` command with `-d` option, or we can simply do it using `deluser` command with two arguments as follows:
+To delete a user from a group, we can use the `gpasswd` command with `-d` option, or we can simply do it using the `deluser` command with two arguments as follows:
 
 ```bash
 sudo deluser [username] [groupname]
@@ -991,7 +991,7 @@ sudo deluser [username] [groupname]
 
 ## The root User
 
-`root` is the super user and has the ability to do anything on a system. If you have the password of root user, you can login to the root account using `su` command and then logout using `exit` command. In order to have an additional layer of security, a `sudo` user is generally used in place of root. While `sudo` is used to give another user limited access to another user’s account for the purpose of performing tasks (in most cases the root user or the superuser), `sudo` may be best explained as a tool that allows users and groups to have access to commands they normally would not be able to use. `sudo` enables a user to have administration privileges without logging in directly as `root`. A sample of the `sudo` command is as follows:
+`root` is the super user and has the ability to do anything on a system. If you have the password of the root user, you can log in to the root account using the `su` command and then log out using the `exit` command. In order to have an additional layer of security, a `sudo` user is generally used in place of the root. While `sudo` is used to give another user limited access to another user’s account for the purpose of performing tasks (in most cases the root user or the superuser), `sudo` may be best explained as a tool that allows users and groups to have access to commands they normally would not be able to use. `sudo` enables a user to have administration privileges without logging in directly as `root`. A sample of the `sudo` command is as follows:
 
 ```bash
 sudo apt-get install [package]
@@ -1005,8 +1005,8 @@ The `visudo` command should be used to edit the `sudoers` file. At a command lin
 
 Permissions are the “rights” to act on a file or directory. The basic rights are read, write, and execute.
 
-- **Read**: a readable permission allows the contents of the file to be viewed. A read permission on a directory allows you to list the contents of a directory.
-- **Write**: a write permission on a file allows you to modify the contents of that file. For a directory, the write permission allows you to edit the contents of a directory (e.g. add/delete files).
+- **Read**: read permission allows the contents of the file to be viewed. A read permission on a directory allows you to list the contents of a directory.
+- **Write**: write permission on a file allows you to modify the contents of that file. For a directory, the write permission allows you to edit the contents of a directory (e.g. add/delete files).
 - **Execute**: for a file, the executable permission allows you to run the file and execute a program or script. For a directory, the execute permission allows you to change to a different directory and make it your current working directory.
 
 ### View File Permissions
@@ -1017,9 +1017,10 @@ To view the permissions on a file or directory, issue the command `ls -l` or `ll
 -rw-r--r-- 1 root root 2887 Jul 28 13:31 /etc/passwd
 ```
 
-The first ten characters show the access permissions. The first dash (`-`) indicates the type of file (`d` for directory, `s` for special file, and `-` for a regular file). The next three characters (`rw-`) define the owner’s permission to the file. In this example, the file owner has read and write permissions only. The next three characters (`r--`) are the permissions for the members of the same group as the file owner (which in this example is read only). The last three characters (`r--`) show the permissions for all other users and in this example it is read only. The following picture gives a summary:
+The first ten characters show the access permissions. The first dash (`-`) indicates the type of file (`d` for directory, `s` for special file, and `-` for a regular file). The next three characters (`rw-`) define the owner’s permission to the file. In this example, the file owner has read and write permissions only. The next three characters (`r--`) are the permissions for the members of the same group as the file owner (which in this example is read-only). The last three characters (`r--`) show the permissions for all other users and in this example, it is read-only. The following picture gives a summary:
 
-**Picture here**
+![file_permissions](https://github.com/parsabsh/linux-notes/assets/92635013/183fc062-9831-494f-a095-b29e92266ca7)
+
 
 ### Change File Owner
 
@@ -1031,7 +1032,7 @@ sudo chown [USER]:[GROUP] [FILE]  # l
 
 ### Change Permissions
 
-One of the most useful commands which enables us to change the permissions of a file or a directory, is `chmod` (i.e. change mode). This command can be used in two different ways:
+One of the most useful commands which enable us to change the permissions of a file or a directory is `chmod` (i.e. change mode). This command can be used in two different ways:
 
 ```bash
 chmod MODE[,MODE,...] FILE  # using letters
@@ -1064,7 +1065,7 @@ For instance, consider the following command:
 chmod u+rw,go-w,a-x file.sh
 ```
 
-This command grants read and write permissions to the file owner. Then it gets the write permission from group owner and all other users. Finally, it removes execute permission from all users. If we run `ls -l` before and after this command, we maight see something like this:
+This command grants read and write permissions to the file owner. Then it gets the write permission from the group owner and all other users. Finally, it removes execute permission from all users. If we run `ls -l` before and after this command, we might see something like this:
 
 ```bash
 $ ls -l
@@ -1086,11 +1087,11 @@ $ ls -l
 
 A **bash script** is a file that we run a set of processes by executing it.
 
-**_Shebang:_** A shebang is a line at the beginning of the script (or every executable file). We use it to tell the OS how to interpret this file. This line consists of **`#!`** followed by the address of desired interpreter. For example, the shebang we should use at the beginnig of a bash script file is `#! /bin/bash`.
+**_Shebang:_** A shebang is a line at the beginning of the script (or every executable file). We use it to tell the OS how to interpret this file. This line consists of **`#!`** followed by the address of the desired interpreter. For example, the shebang we should use at the beginning of a bash script file is `#! /bin/bash`.
 
 ## Variables
 
-We can define variables in bash scripts just like other languages. For instance:
+We can define variables in bash scripts just like in other languages. For instance:
 
 ```bash
 #! /bin/bash
@@ -1202,7 +1203,7 @@ We can also access the element in a specific index like this:
 ```bash
 echo ${my_array[0]}   # arrays start at 0
 echo ${my_array[1]}
-echo ${my_array[-1]}  # you can use negetive index to index from the end
+echo ${my_array[-1]}  # you can use a negative index to index from the end
 
 my_array[0]=hello     # you can change an index value
 my_array[10]='new'    # accessing an "out of range" index would result in an append!
@@ -1220,7 +1221,7 @@ To access the indices of our array use `!`. Like this:
 echo "${!my_array[@]}"
 ```
 
-Also, we can use `unset` command to remove an index from our array:
+Also, we can use the `unset` command to remove an index from our array:
 
 ```bash
 a1=(1 2 3 4 5 6 7)
@@ -1280,7 +1281,7 @@ if command; then
 fi
 ```
 
-**NOTE:** There is a subtle difference between if statements in bash and other languages. In other languages, the conditional term is either True of False. But in bash, it's a command. If the command is executed successfully (with exit code `0`), then the `commands` will be executed (and otherwise, they won't).
+**NOTE:** There is a subtle difference between if statements in bash and other languages. In other languages, the conditional term is either True or False. But in bash, it's a command. If the command is executed successfully (with exit code `0`), then the `commands` will be executed (and otherwise, they won't).
 
 ### if-then-else
 
@@ -1351,9 +1352,9 @@ esac
 
 ### test command
 
-Earlier we talked about the difference between bash and other languages in conditional term.
+Earlier we talked about the difference between bash and other languages in conditional terms.
 
-Now if we want to use the `True/False` structure for `if-statements`, linux has provided us with a useful tool which returns `exit code 0` if `True`, and `exit code 1` if `False`. This tool is the `test` command.
+Now if we want to use the `True/False` structure for `if-statements`, Linux has provided us with a useful tool that returns `exit code 0` if `True`, and `exit code 1` if `False`. This tool is the `test` command.
 
 ```bash
 test conditions
@@ -1365,13 +1366,13 @@ or
 [ conditions ]
 ```
 
-Using the `test` command, you can have `Numeric Comparisons`, `String Comparisons`, and `File Comparisons`. There are a lot of options built into the `test` command, that I strongly suggest you to use the following command for more information:
+Using the `test` command, you can have `Numeric Comparisons`, `String Comparisons`, and `File Comparisons`. There are a lot of options built into the `test` command, so I strongly suggest you use the following command for more information:
 
 ```shell
 $ man test
 ```
 
-**ٔNote:** You can also use AND(`&&`) and OR(`||`) operations to combine conditions in `test` command.
+**ٔNote:** You can also use AND(`&&`) and OR(`||`) operations to combine conditions in the `test` command.
 
 ## Loops
 
@@ -1467,9 +1468,9 @@ done
 
 In this rather short section, we want to work with any number of arguments and options.
 
-First you should get to know the `shift` command. As its name implies, it _shifts_ the arguments to the left by 1. This means that the first argument (`$1`) will be removed (and will be replaced by the second one (`$2`)).
+First, you should get to know the `shift` command. As its name implies, it _shifts_ the arguments to the left by 1. This means that the first argument (`$1`) will be removed (and will be replaced by the second one (`$2`)).
 
-Now we can combine `while loop` and `shift` command to work with an arbitrary number of arguments. See this example:
+Now we can combine `while loop` and `shift` commands to work with an arbitrary number of arguments. See this example:
 
 ```bash
 #!/bin/bash
@@ -1538,7 +1539,7 @@ Parameter 3 = Amir
 <details>
 <summary><b>Another Example: How's the weather?</b></summary>
 
-In this example we write a script to get the weather of a region that is passed to script as an argument. We also write a `--help` option for it :)
+In this example, we write a script to get the weather of a region that is passed to the script as an argument. We also write a `--help` option for it :)
 
 ```bash
 #! /bin/bash
@@ -1615,14 +1616,14 @@ function gauss {
   echo $sum
 }
 
-echo here is the proof that guass law was currect: `gauss` == $(((10+0)*11/2))
+echo here is the proof that Guass law was correct: `gauss` == $(((10+0)*11/2))
 ```
 
 # 5) Processes
 
 ## What is a "Kernel"?
 
-Kernel is the main part of a Operating System that has the full control over everything. It's also an interface between application software and the hardware.
+A kernel is the main part of an Operating System that has full control over everything. It's also an interface between application software and hardware.
 
 ![Kernel](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Kernel_Layout.svg/220px-Kernel_Layout.svg.png)
 
@@ -1640,13 +1641,13 @@ This command prints certain system information. If used without options, just pr
 
 ## What is a "process"?
 
-Generally, a process is referred to execution of a program or command. In other words, when we execute a program or command, Linux creates (at least) one process for it. Each process uses an amount of system resources (like CPU, memory, etc.). In linux, each process is identified by a **PID(Process Identification Number)**.
+Generally, a process is referred to the execution of a program or command. In other words, when we execute a program or command, Linux creates (at least) one process for it. Each process uses an amount of system resources (like CPU, memory, etc.). In Linux, each process is identified by a **PID(Process Identification Number)**.
 
-A process can be executed either in _Foreground_ or _Background_. By default, shell commands are executed in _Foreground_ (and so you have to wait until the execution terminates to be able to run another foreground pocess).
+A process can be executed either in _Foreground_ or _Background_. By default, shell commands are executed in _Foreground_ (and so you have to wait until the execution terminates to be able to run another foreground process).
 
 ## Process Management Commands
 
-There are some commands to contorl processes:
+There are some commands to control processes:
 
 ### jobs
 
@@ -1660,7 +1661,7 @@ bg %n
 
 Where `n` is the _jobs ID_.
 
-This command sends the process to background.
+This command sends the process to the background.
 
 ### fg
 
@@ -1670,33 +1671,33 @@ fg %n
 
 Where `n` is the _jobs ID_.
 
-This command sends the process to foreground.
+This command sends the process to the foreground.
 
 ### top and htop
 
-`top` command is Linux's default command to see list of processes. By executing this command, you can observe executing processes and their associated system resources. This list is sorted by CPU usage by default.
+The `top` command is Linux's default command to see a list of processes. By executing this command, you can observe executing processes and their associated system resources. This list is sorted by CPU usage by default.
 
-For more user-friendly appearance, you can use `htop` command. This command is not installed by default on most Linux distributions and you have to use `sudo apt install htop` first. This command has an interactive environment which you can use Function Keys on your keyboard to do some changes. Try it :)
+For a more user-friendly appearance, you can use the `htop` command. This command is not installed by default on most Linux distributions and you have to use `sudo apt install htop` first. This command has an interactive environment in which you can use Function Keys on your keyboard to do some changes. Try it :)
 
 ### nice and renice
 
-If you use `top` or `htop` command, you will see a column named **NI** which stands for **Niceness**. Niceness is the priority of a process. The Linux kernel looks at the priority number to decide which process should run first.
+If you use the `top` or `htop` command, you will see a column named **NI** which stands for **Niceness**. Niceness is the priority of a process. The Linux kernel looks at the priority number to decide which process should run first.
 
-**Niceness** is a number from -20 to 19. The higher the number, the lower the priority. To execute a command or script with a specific niceness, use `nice` command:
+**Niceness** is a number from -20 to 19. The higher the number, the lower the priority. To execute a command or script with a specific niceness, use the `nice` command:
 
 ```bash
 nice -n niceness COMMAND
 ```
 
-**NOTE:** Only root user can set the nice value from -20 to 19. Other users can only set nice values from 0 to 19.
+**NOTE:** Only the root user can set the nice value from -20 to 19. Other users can only set nice values from 0 to 19.
 
-To change the niceness of a running process, use `renice` command:
+To change the niceness of a running process, use the `renice` command:
 
 ```bash
 renice -n niceness -p PID
 ```
 
-or to change niceness of all running processes by a user:
+or to change the niceness of all running processes by a user:
 
 ```bash
 renice -n niceness -u username
@@ -1708,25 +1709,25 @@ renice -n niceness -u username
 ps [OPTIONS]
 ```
 
-This is another command for monitoring the running processes. It has a bunch of useful options that are usualy used together. For example `ps aux` is very common. As always, you can keep learning by yourself using commands' manual pages.
+This is another command for monitoring the running processes. It has a bunch of useful options that are usually used together. For example `ps aux` is very common. As always, you can keep learning by yourself using the commands' manual pages.
 
 ## Process Lifecycle
 
-Each process in Linux has a lifecycle. The `STAT` column in `ps` command shows where the process is in its lifecycle. Consider the following image:
+Each process in Linux has a lifecycle. The `STAT` column in the `ps` command shows where the process is in its lifecycle. Consider the following image:
 
 ![Linux Process](https://totozhang.github.io/2016-01-16-linux-zombieprocess/LinuxZombie1.png)
 
 ## /proc directory
 
-Since **_"Everything is a file"_** in Linux, processes are not exception. All processes in Linux, are tracked in a directory with address `/proc`.
+Since **_"Everything is a file"_** in Linux, processes are not an exception. All processes in Linux, are tracked in a directory with address `/proc`.
 
 If you open and work with this directory, you will learn a lot about processes. You can also use `man 5 proc` command to enter the manual page of process file system in Linux.
 
 ## Signals and kill Command
 
-We use a signal to talk to a process. Not only us, but a signal can be sent by another process or by the OS kernel itself.
+We use a signal to talk to a process. Not only us but a signal can be sent by another process or by the OS kernel itself.
 
-When a process recieves a signal, it decides how to react:
+When a process receives a signal, it decides how to react:
 
 1) Do the signal's default operation.
 2) Ignore the signal.
@@ -1749,7 +1750,7 @@ or
 kill -NUMBER PID
 ```
 
-Where the `NAME` and `NUMBER` are the ones you saw in `kill -l` command.
+Where the `NAME` and `NUMBER` are the ones you saw in the `kill -l` command.
 
 ## Sessions and Groups
 
@@ -1759,7 +1760,7 @@ Where the `NAME` and `NUMBER` are the ones you saw in `kill -l` command.
 
 **Session:** Each tab in your terminal is a session. In fact, the `jobs` command displays the processes of the session in which the `jobs` command is executed. Each session is identified by `SID`.
 
-**Session Leader:** The process that has the same PID as the SID (PID == SID). When you use `fg` command, you make a process (and the corresponding group), the session leader.
+**Session Leader:** The process that has the same PID as the SID (PID == SID). When you use the `fg` command, you make a process (and the corresponding group), the session leader.
 
 This image summarizes the definitions above:
 
