@@ -26,6 +26,7 @@
   - [Standard Streams](#standard-streams)
   - [Redirection](#redirection)
   - [Pipelines](#pipelines)
+  - [Package Managers](#package-managers)
 - [2) Files and Strings](#2-files-and-strings)
   - [du and file commands](#du-and-file-commands)
   - [Vim editor](#vim-editor)
@@ -53,6 +54,19 @@
     - [Archive Multiple Files](#archive-multiple-files)
   - [awk](#awk)
 - [3) Permissions](#3-permissions)
+  - [Linux Accounts and Groups](#linux-accounts-and-groups)
+    - [User](#user)
+    - [Group](#group)
+    - [/etc/passwd](#etcpasswd)
+  - [Manage Users and Groups](#manage-users-and-groups)
+    - [Create and Delete Users](#create-and-delete-users)
+    - [Create and Delete Groups](#create-and-delete-groups)
+    - [Change User Properties](#change-user-properties)
+  - [The root User](#the-root-user)
+  - [File and Directory Permissions](#file-and-directory-permissions)
+    - [View File Permissions](#view-file-permissions)
+    - [Change File Owner](#change-file-owner)
+    - [Change Permissions](#change-permissions)
 - [4) Scripting](#4-scripting)
   - [Variables](#variables)
   - [Arrays](#arrays)
@@ -142,7 +156,7 @@ man COMMAND
 
 ## Some Useful Ubuntu Shortcuts
 
-_**Note**_: Super key is the key with windows sign on it (= Windows key).
+_**NOTE**_: Super key is the key with windows sign on it (= Windows key).
 |Key|Action|
 |:--|:-----|
 |Super key|Opens Activities search|
@@ -188,7 +202,7 @@ cd <address>
 `cd` stands for `change directory` and as its name implies, we can use it to move in the file system.
 (`<address>` can be either relative or absolute)
 
-**Note:** We can use `.` and  `..` in the `<address>` part. `.` is `current directory` and `..` is `parent directory`. For example if we are in `/home/parsa` and we run `cd ..`, we will be moved to `/home`.
+**NOTE:** We can use `.` and  `..` in the `<address>` part. `.` is `current directory` and `..` is `parent directory`. For example if we are in `/home/parsa` and we run `cd ..`, we will be moved to `/home`.
 
 **~** : This sign stands for the current user's home directory which is `/home/<username>`. For example `cd ~/Downloads/` will move me to `/home/parsa/Downloads/`.
 
@@ -299,7 +313,7 @@ mv SOURCE DEST
 
 This command moves a file or directory (You can think about it like _cut_ and _paste_). As always, don't forget to use `--help` or `man` for more information :)
 
-**Note:** We also use `mv` command to **rename** files.
+**NOTE:** We also use `mv` command to **rename** files.
 
 ## rm
 
@@ -434,6 +448,42 @@ COMMAND --help | grep "what I'm looking for"
 
 Use it and enjoy :)
 
+## Package Managers
+
+Package Managers are essentially software applications that help users to: Search, Download, Install, Remove and Update software applications on their computer. Experienced Linux users will very rarely download software from websites or any other location. The primary reasons for this included aspects as ease of use, security and the fact that most Linux distributions have a list of sources where users can download free open source software packages.
+
+For most novice users of Linux, the most common and popular package managers they are likely to first start using is the `apt` (Advanced Package Tool) because it is most widely shipped as the default Package Manager for users of Debian, Ubuntu and Mint. We will cover some basic and common commands of `apt`:
+
+First of all, we update our package manager, meaning that it updates its package list if there is any new package or new version of a package is available.
+
+```bash
+sudo apt update
+```
+
+We can also search for a package:
+
+```bash
+sudo apt search [PACKAGE_NAME]
+```
+
+Then we can install a package:
+
+```bash
+sudo apt install [PACAKGE_NAME]
+```
+
+If we don't want a package anymore, we can delete it:
+
+```bash
+sudo apt remove [PACKAGE_NAME]
+```
+
+By executing the following command, if there is a new version available for a package that has been already installed, it will upgrade to the new version:
+
+```bash
+sudo apt upgrade
+```
+
 # 2) Files and Strings
 
 ## du and file commands
@@ -496,7 +546,7 @@ Be sure to refer to the official Linux [Filesystem Hierarchy Standard (FHS)](htt
 
 We have already learned the `cat` command to view files. Here, we introduce some more commads to do this.
 
-**Note:** All of the following commands also work for multiple files.
+**NOTE:** All of the following commands also work for multiple files.
 
 ### more
 
@@ -825,6 +875,213 @@ awk '/REGEX/{action}' file
 
 # 3) Permissions
 
+Linux’s major difference from other operating systems is its ability to have multiple users. Linux is designed to allow more than one user to have access to the system at the same time. In order for this multiuser design to work properly, there needs to be a method to protect users from each other. This is where permissions come in to play.
+
+**NOTE:** For more information on the topics in this chapter, I recommend to see [here](https://www.linode.com/docs/guides/linux-users-and-groups/).
+
+## Linux Accounts and Groups
+
+### User
+
+A user is an entity that can manipulate files and perform several other operations. Each user is assigned an ID that is unique for each user in the operating system.
+
+Linux-based systems have two types of users: system and normal users. System users are entities created by the system to run non-interactive processes, i.e., the processes that run in the background and do not require human interaction.
+
+After installation of the operating system, the ID 0 is assigned to the root user and the IDs 1 to 999 (both inclusive) are assigned to the system users and hence the ids for local user begins from 1000 onwards.
+
+### Group
+
+Groups are collections of users. Creating and managing groups is one of the simplest ways to deal with multiple users simultaneously, especially when dealing with permissions. So, instead of manipulating each user's permissions one by one, we just need to add it to a group with some specific set of permissions.
+
+### /etc/passwd
+
+A record of the users of a system is stored in the file `/etc/passwd`. Each line of this file represents a user account in the following format:
+
+```bash
+[username]:[password]:[UID]:[GID]:[Extra Info]:[home directory]:[shell]
+```
+
+The `GID` here is the _Primary Group_ ID. When a Linux user logs into their system, the primary group is usually the default group associated with the logged in account.
+
+To find my account information in this file, I use the `whoami` command which returns the username of the logged in user:
+
+```bash
+cat /etc/passwd | grep $(whoami)
+```
+
+and the output will be something like this:
+
+```bash
+parsa:x:1000:1000:parsa,,,:/home/parsa:/bin/bash
+```
+
+You can see that there is an `x` in the password field. This is due to the fact that your OS stores the encoded value of passwords in `/etc/shadow` which as a normal user, you do not have permission to read.
+
+Using `id` command, you can see user and group information about each specified user or (when user omitted) for the current user.
+
+**Curiosity**: This file is a good file to practice what you learned in the previous chapter on. Try `awk` and `sort` commands on it.
+
+## Manage Users and Groups
+
+**NOTE**: You may need root privilages to execute some of the following commands. We will discuss about root user later. For now, just add `sudo` before your commands.
+
+### Create and Delete Users
+
+To create a new standard user, use the `useradd` command. The syntax is as follows:
+
+```bash
+useradd [options] username
+```
+
+Some useful options are shown here:
+
+- `-d, --home-dir [HOME_DIR]`: home directory of the new account
+- `-e, --expiredate [EXPIRE_DATE]`: expiration date of the new account
+- `-m, --create-home`: create the user's home directory
+- `-s, --shell [SHELL]`: login shell of the new account
+
+You need to set a password for the new user by using the `passwd` command. The syntax is as follows:
+
+```bash
+passwd username
+```
+
+There is another way to create a new user which is easier. Instead of `useradd`, try `adduser`! It will ask you some questions (most of them are optional).
+
+After you created a new user, go and check `/etc/passwd` last row. You will see there is a new account added to this file, and also a new group has been created as its primary group.
+
+In order to delete a user account, we can use `deluser` or `userdel` commands. There both have options for deleting the home directory and the files owned by the user. User their help pages to find out.
+
+### Create and Delete Groups
+
+There are two commands for creating a new group, just like the ones for creating a new user:
+
+```bash
+sudo groupadd name
+sudo addgroup name
+```
+
+In order to delete a group, we can use `delgroup` or `groupdel` commands. As always, see the help pages!
+
+### Change User Properties
+
+The `usermod` command is used to change user properties. Some of its options are here:
+
+- `-g, --gid [GROUP]`: force use GROUP as new primary group
+- `-G, --groups [GROUPS]`: new list of supplementary GROUPS
+- `-a, --append`: append the user to the supplemental GROUPS mentioned by the -G option without removing the user from other groups
+- `-d, --home HOME_DIR`: new home directory for the user account
+- `-m, --move-home`: move contents of the home directory to the new location (use only with `-d`)
+- `-u, --uid`: new UID for the user account
+- `-s, --shell`: new login shell for the user account
+
+So, in order to add a user to a group, we should run the following command:
+
+```bash
+sudo usermod -aG [groupname] [username]
+```
+
+Now, if you run `id [username]`, you will see that the new group is added to its groups list.
+
+To delete a user from a group, we can use `gpasswd` command with `-d` option, or we can simply do it using `deluser` command with two arguments as follows:
+
+```bash
+sudo deluser [username] [groupname]
+```
+
+## The root User
+
+`root` is the super user and has the ability to do anything on a system. If you have the password of root user, you can login to the root account using `su` command and then logout using `exit` command. In order to have an additional layer of security, a `sudo` user is generally used in place of root. While `sudo` is used to give another user limited access to another user’s account for the purpose of performing tasks (in most cases the root user or the superuser), `sudo` may be best explained as a tool that allows users and groups to have access to commands they normally would not be able to use. `sudo` enables a user to have administration privileges without logging in directly as `root`. A sample of the `sudo` command is as follows:
+
+```bash
+sudo apt-get install [package]
+```
+
+In order to provide a user with the `sudo` ability, they need to be added to a `sudo` enabled group, or their username needs to be added to the `sudoers` file with a set of permissions. This file is sensitive and important as an access and security control, and should not be edited directly with a text editor. If the sudoers file is edited incorrectly it could result in preventing access to the system or other unintended permission changes.
+
+The `visudo` command should be used to edit the `sudoers` file. At a command line, log into your system as `root` and enter the command `visudo`. For more information see [here](https://www.linode.com/docs/guides/linux-users-and-groups/#whitelisting-commands-with-sudo).
+
+## File and Directory Permissions
+
+Permissions are the “rights” to act on a file or directory. The basic rights are read, write, and execute.
+
+- **Read**: a readable permission allows the contents of the file to be viewed. A read permission on a directory allows you to list the contents of a directory.
+- **Write**: a write permission on a file allows you to modify the contents of that file. For a directory, the write permission allows you to edit the contents of a directory (e.g. add/delete files).
+- **Execute**: for a file, the executable permission allows you to run the file and execute a program or script. For a directory, the execute permission allows you to change to a different directory and make it your current working directory.
+
+### View File Permissions
+
+To view the permissions on a file or directory, issue the command `ls -l` or `ll`:
+
+```txt
+-rw-r--r-- 1 root root 2887 Jul 28 13:31 /etc/passwd
+```
+
+The first ten characters show the access permissions. The first dash (`-`) indicates the type of file (`d` for directory, `s` for special file, and `-` for a regular file). The next three characters (`rw-`) define the owner’s permission to the file. In this example, the file owner has read and write permissions only. The next three characters (`r--`) are the permissions for the members of the same group as the file owner (which in this example is read only). The last three characters (`r--`) show the permissions for all other users and in this example it is read only. The following picture gives a summary:
+
+**Picture here**
+
+### Change File Owner
+
+As we mentioned before, each file or directory has two owners: a _user owner_ and a _group owner_. The `chown` command enables us to change these owners. The general structure of this command is:
+
+```bash
+sudo chown [USER]:[GROUP] [FILE]  # l
+```
+
+### Change Permissions
+
+One of the most useful commands which enables us to change the permissions of a file or a directory, is `chmod` (i.e. change mode). This command can be used in two different ways:
+
+```bash
+chmod MODE[,MODE,...] FILE  # using letters
+# where each MODE is of the following format:
+[ugoa][+-=][rwx]
+```
+
+or
+
+```bash
+chmod OCTAL-MODE FILE  # using numbers
+```
+
+In the first method, each character has its own meaning:
+
+- `u`: file owner
+- `g`: group owner
+- `o`: all other users
+- `a`: all users, identical to `ugo`
+- `+`: grant permission
+- `-`: remove permission
+- `=`: replace (set) permissions
+- `r`: read permission
+- `w`: write permission
+- `x`: execute permission
+
+For instance, consider the following command:
+
+```bash
+chmod u+rw,go-w,a-x file.sh
+```
+
+This command grants read and write permissions to the file owner. Then it gets the write permission from group owner and all other users. Finally, it removes execute permission from all users. If we run `ls -l` before and after this command, we maight see something like this:
+
+```bash
+$ ls -l
+-r-xrw-r-- 1 parsa parsa   25 Jul 28 16:15 file.sh
+$ chmod u+rw,go-w,a-x file.sh
+$ ls -l
+-rw-r--r-- 1 parsa parsa   25 Jul 28 16:15 file.sh
+```
+
+In the second method, we put 0 or 1 instead of each letter in `rwx` and the read the result number in binary format. Then we do this for three groups (file owner, group owner, and other users) and we put the three numbers together to form a 3-digit number. For instance, we show `r-xrw---x` by `561` in the following command:
+
+```bash
+$ chmod 561 file.sh
+$ ls -l
+-r-xrw---x 1 parsa parsa   25 Jul 28 16:15 file.sh
+```
+
 # 4) Scripting
 
 A **bash script** is a file that we run a set of processes by executing it.
@@ -1023,7 +1280,7 @@ if command; then
 fi
 ```
 
-**Note:** There is a subtle difference between if statements in bash and other languages. In other languages, the conditional term is either True of False. But in bash, it's a command. If the command is executed successfully (with exit code `0`), then the `commands` will be executed (and otherwise, they won't).
+**NOTE:** There is a subtle difference between if statements in bash and other languages. In other languages, the conditional term is either True of False. But in bash, it's a command. If the command is executed successfully (with exit code `0`), then the `commands` will be executed (and otherwise, they won't).
 
 ### if-then-else
 
@@ -1144,7 +1401,7 @@ done
    echo
    ```
 
-   **Note:** The `"` character is optional unless the elements have special characters like `'`, `space`, etc.
+   **NOTE:** The `"` character is optional unless the elements have special characters like `'`, `space`, etc.
 - read from a file:
 
    ```bash
@@ -1204,7 +1461,7 @@ do
 done
 ```
 
-**Note:** We can use `break` and `continue` statements just like every other language.
+**NOTE:** We can use `break` and `continue` statements just like every other language.
 
 ## Options and Arguments
 
@@ -1431,7 +1688,7 @@ If you use `top` or `htop` command, you will see a column named **NI** which sta
 nice -n niceness COMMAND
 ```
 
-**Note:** Only root user can set the nice value from -20 to 19. Other users can only set nice values from 0 to 19.
+**NOTE:** Only root user can set the nice value from -20 to 19. Other users can only set nice values from 0 to 19.
 
 To change the niceness of a running process, use `renice` command:
 
@@ -1508,4 +1765,4 @@ This image summarizes the definitions above:
 
 ![Groups and Sessions](https://quera.org/qbox/view/fWwTcXjVza/session.png)
 
-**Note:** You can send a signal to a group or session just like a single process.
+**NOTE:** You can send a signal to a group or session just like a single process.
