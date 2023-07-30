@@ -103,7 +103,7 @@
   - [Signals and kill Command](#signals-and-kill-command)
   - [Sessions and Groups](#sessions-and-groups)
 
-**NOTE:** Pictures and diagrams without mentioned source are taken from Quera.ir.
+**NOTE:** Pictures and diagrams without mentioned source are taken from [Quera](https://quera.ir/).
 
 # Introduction
 
@@ -1027,7 +1027,7 @@ The first ten characters show the access permissions. The first dash (`-`) indic
 As we mentioned before, each file or directory has two owners: a _user owner_ and a _group owner_. The `chown` command enables us to change these owners. The general structure of this command is:
 
 ```bash
-sudo chown [USER]:[GROUP] [FILE]  # l
+sudo chown [USER]:[GROUP] [FILE]
 ```
 
 ### Change Permissions
