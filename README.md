@@ -1,6 +1,5 @@
 # Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Introduction](#introduction)
   - [Linux Distributions ("Distro"s)](#linux-distributions-distros)
     - [The most popular linux distributions](#the-most-popular-linux-distributions)
